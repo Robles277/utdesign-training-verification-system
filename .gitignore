@@ -1,0 +1,5 @@
+## Hiding Application Properties
+application.properties
+
+## Hiding the eventual node_modules
+node_modules/
