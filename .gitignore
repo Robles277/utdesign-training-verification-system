@@ -1,5 +1,5 @@
 ## Hiding Application Properties
-application.properties
+/DatabaseAPI/src/main/resources/application.properties
 
 ## Hiding the eventual node_modules
 node_modules/
