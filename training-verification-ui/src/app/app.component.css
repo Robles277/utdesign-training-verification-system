@@ -1,0 +1,14 @@
+.mainText {
+    padding-top: 25px;
+    padding-left: 600px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+}
+
+.navbar {
+    color: white;
+    background-color: #e87500;
+    height: 40px;
+    text-align: center;
+    font-size: 25px;
+}
