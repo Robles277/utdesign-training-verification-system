@@ -1,0 +1,25 @@
+{
+  "name": "utdesign-training-verification-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "-": "0.0.1",
+    "@angular/cli": "^11.2.5",
+    "g": "^2.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Micbran/utdesign-training-verification-system.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Micbran/utdesign-training-verification-system/issues"
+  },
+  "homepage": "https://github.com/Micbran/utdesign-training-verification-system#readme"
+}

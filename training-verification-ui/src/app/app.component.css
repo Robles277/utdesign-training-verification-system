@@ -7,8 +7,39 @@
 
 .navbar {
     color: white;
-    background-color: #e87500;
-    height: 40px;
-    text-align: center;
+    /* background-color: #59585e; */
+    height: 200px;
+    text-align: left;
     font-size: 25px;
 }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: white;
+  }
+  
+  li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change the link color on hover */
+  li a:hover {
+    background-color: #555;
+    color: white;
+  }
+
+a:hover { text-decoration: none; color:white; }
+a:focus { text-decoration: none; color:orange; }
+a:active { text-decoration: none; color:teal; }
