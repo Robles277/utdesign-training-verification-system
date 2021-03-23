@@ -1,5 +1,7 @@
 package com.project.DatabaseAPI;
 
+//Autumn will make new classes
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
