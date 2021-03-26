@@ -12,21 +12,29 @@ import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sun.istack.NotNull;
+
 @Entity
 @Table(name = "student")
 @EntityListeners(AuditingEntityListener.class)
 public class Student{
 
-	
+	@JsonProperty(value = "first_name")
 	private String first_name;
+	
+	@JsonProperty(value = "last_name")
 	private String last_name;
+	
+	@JsonProperty(value = "net_id")
 	private String net_id;
+	
+	@JsonProperty(value = "student_id")
 	private String student_id;
 	
-	@Id 
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int studentPk; 
+	private int student_pk; 
 	
+	@JsonProperty(value = "training_level")
 	private short training_level = 0; 
 
 	public Student() {	
@@ -42,13 +50,14 @@ public class Student{
 
 	
 	
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getStudentPk() {
-		return studentPk;
+		return student_pk;
 	}
 		
 	public void setStudentPk(int studentPk) {
-		this.studentPk = studentPk;
+		this.student_pk = studentPk;
 	}
 		
 	public String getStudentId() {
