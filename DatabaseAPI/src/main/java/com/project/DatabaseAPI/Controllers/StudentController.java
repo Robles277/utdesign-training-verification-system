@@ -1,4 +1,4 @@
-package com.project.DatabaseAPI;
+package com.project.DatabaseAPI.Controllers;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -18,50 +18,53 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.DatabaseAPI.Repositories.StudentRepository;
+import com.project.DatabaseAPI.Services.StudentService;
+import com.project.DatabaseAPI.Entities.*;
+
 @RestController 
-public class ProductController {
+public class StudentController {
   
   @Autowired
-  private PlayerRepository playerRepository;
+  private StudentRepository studentRepository;
   
   
   @Autowired
-  private PlayerService service;
+  private StudentService service;
   
   @GetMapping(path="/list")
-  public List<Player> list() {
+  public List<Student> list() {
 	  return service.listAll();
   }
   
-  @GetMapping("/players/{id}")
-  public ResponseEntity<Player> get(@PathVariable int id) {
+  @GetMapping("/student/{id}")
+  public ResponseEntity<Student> get(@PathVariable int id) {
 	  try {
-		  Player player =  service.get(id);
-		  return new ResponseEntity<Player>(player, HttpStatus.OK);
+		  Student player =  service.get(id);
+		  return new ResponseEntity<Student>(player, HttpStatus.OK);
 	  } catch(NoSuchElementException e) {
-		  return new ResponseEntity<Player>(HttpStatus.NOT_FOUND);
+		  return new ResponseEntity<Student>(HttpStatus.NOT_FOUND);
 	  }
   }
   
-  @PostMapping("/players")
-  public void add(@RequestBody Player player) {
-	  service.save(player);
+  @PostMapping("/student")
+  public void add(@RequestBody Student student) {
+	  service.save(student);
   }
   
-  @PutMapping("/players/{id}") 
-  public ResponseEntity<?> update(@RequestBody Player player,
+  @PutMapping("/student/{id}") 
+  public ResponseEntity<?> update(@RequestBody Student student,
 		  					@PathVariable Integer id) {
 	  try {
-		  Player existPlayer = service.get(id);
-//		  player.setId(id);
-		  service.save(player);
+		  Student existPlayer = service.get(id);
+		  service.save(student);
 		  return new ResponseEntity<>(HttpStatus.OK);
 	  } catch (NoSuchElementException e) {
 		  return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	  }
   }
   
-  @DeleteMapping("/players/{id}")
+  @DeleteMapping("/student/{id}")
   public void delete(@PathVariable Integer id) {
       service.delete(id);
   }

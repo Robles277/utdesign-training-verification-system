@@ -1,4 +1,4 @@
-package com.project.DatabaseAPI;
+package com.project.DatabaseAPI.Entities;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -10,15 +10,15 @@ import javax.persistence.Table;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name = "Appointment")
+@Table(name = "appointment")
 @EntityListeners(AuditingEntityListener.class)
 public class Appointment {
 
 	private int appointmentPk; // auto-increment
 	
 	private String organizer;
-	private java.util.Date startTime;
-	private java.util.Date endTime;
+	private java.util.Date start_time;
+	private java.util.Date end_time;
 	private java.time.Duration duration; //virtual attribute in database
 
 	public Appointment() {	
@@ -26,8 +26,8 @@ public class Appointment {
 	
 	public Appointment(String organizer, java.util.Date startTime, java.util.Date endTime, java.time.Duration duration) {
 		this.organizer = organizer;
-		this.startTime = startTime;
-		this.endTime = endTime;
+		this.start_time = startTime;
+		this.end_time = endTime;
 		this.duration = duration;
 	}
 
@@ -49,19 +49,19 @@ public class Appointment {
 		return organizer;
 	}
 	public java.util.Date getStartTime() {
-		return startTime;
+		return start_time;
 	}
 
 	public void setStartTime(java.util.Date startTime) {
-		this.startTime = startTime;
+		this.start_time = startTime;
 	}
 
 	public java.util.Date getEndTime() {
-		return endTime;
+		return end_time;
 	}
 
 	public void setEndTime(java.util.Date endTime) {
-		this.endTime = endTime;
+		this.end_time = endTime;
 	}
 	
 	public void setDuration(java.time.Duration duration) {

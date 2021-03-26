@@ -1,7 +1,6 @@
-package com.project.DatabaseAPI;
+package com.project.DatabaseAPI.Entities;
 
-//Autumn will make new classes
-//this is autumn
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,33 +13,36 @@ import javax.persistence.Table;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name = "Student")
+@Table(name = "student")
 @EntityListeners(AuditingEntityListener.class)
 public class Student{
 
-	private int studentPk; // auto-increment
 	
-	private String studentId;
-	private String netId;
-	private String firstName;
-	private String lastName;
-	private short trainingLevel = 0; //default no training
+	private String first_name;
+	private String last_name;
+	private String net_id;
+	private String student_id;
+	
+	@Id 
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int studentPk; 
+	
+	private short training_level = 0; 
 
 	public Student() {	
 	}
 	
 	public Student(String studentId, String netId, String firstName, String lastName, short trainingLevel) {
-		this.studentId = studentId;
-		this.netId = netId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.trainingLevel = trainingLevel;
+		this.student_id = studentId;
+		this.net_id = netId;
+		this.first_name = firstName;
+		this.last_name = lastName;
+		this.training_level = trainingLevel;
 	}
 
 	
 	
-	@Id // not sure what this does or if needed
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
 	public int getStudentPk() {
 		return studentPk;
 	}
@@ -50,41 +52,41 @@ public class Student{
 	}
 		
 	public String getStudentId() {
-		return studentId;
+		return student_id;
 	}
 
 	public void setStudentId(String studentId) {
-		this.studentId = studentId;
+		this.student_id = studentId;
 	}
 	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+		this.first_name = firstName;
 	}
 
 	public String getFirstName() {
-		return firstName;
+		return first_name;
 	}
 
 	public void setLastName(String lastName) {
-		this.lastName = lastName;
+		this.last_name = lastName;
 	}
 
 	public String getLastName() {
-		return lastName;
+		return last_name;
 	}
 	
-	public void setNetID(String netId) {
-		this.netId = netId;
+	public void setNetId(String netId) {
+		this.net_id = netId;
 	}
 
 	public String getNetId() {
-		return netId;
+		return net_id;
 	}
 
 	public short getTrainingLevel() {
-		return trainingLevel;
+		return training_level;
 	}
 
 	public void setTrainingLevel(short trainingLevel) {
-		this.trainingLevel = trainingLevel;
+		this.training_level = trainingLevel;
 	}
 }
