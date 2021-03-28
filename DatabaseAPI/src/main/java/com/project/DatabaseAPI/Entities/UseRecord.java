@@ -1,4 +1,7 @@
-package com.project.DatabaseAPI;
+package com.project.DatabaseAPI.Entities;
+
+import java.util.Date;
+import java.time.Duration;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -8,9 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import java.util.Date;
-import java.time.Duration;
 
 @Entity
 @Table(name = "UseRecord")

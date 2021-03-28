@@ -22,67 +22,51 @@ import com.project.DatabaseAPI.Repositories.StudentRepository;
 import com.project.DatabaseAPI.Services.StudentService;
 import com.project.DatabaseAPI.Entities.*;
 
-@RestController 
+@RestController
 public class StudentController {
-  
+
   @Autowired
-  private StudentRepository studentRepository;
-  
-  
+  private StudentRepository studentRepository; // do we need this in the controller?
+
+
   @Autowired
-  private StudentService service;
-  
-  @GetMapping(path="/list")
-  public List<Student> list() {
-	  return service.listAll();
+  private StudentService studentService;
+
+  @GetMapping(path="api/students")
+  public List<Student> listStudents() {
+	  return studentService.getAllStudents();
   }
-  
-  @GetMapping("/student/{id}")
-  public ResponseEntity<Student> get(@PathVariable int id) {
+
+  @GetMapping("api/students/{id}")
+  public ResponseEntity<Student> getStudent(@PathVariable int id) {
 	  try {
-		  Student player =  service.get(id);
-		  return new ResponseEntity<Student>(player, HttpStatus.OK);
-	  } catch(NoSuchElementException e) {
+		  Student student =  studentService.getStudent(id);
+		  return new ResponseEntity<Student>(student, HttpStatus.OK);
+	  }
+	  catch(NoSuchElementException e) {
 		  return new ResponseEntity<Student>(HttpStatus.NOT_FOUND);
 	  }
   }
-  
-  @PostMapping("/student")
-  public void add(@RequestBody Student student) {
-	  service.save(student);
+
+  @PostMapping("api/students")
+  public void addStudent(@RequestBody Student student) {
+	  studentService.addStudent(student);
   }
-  
-  @PutMapping("/student/{id}") 
-  public ResponseEntity<?> update(@RequestBody Student student,
+
+  @PutMapping("api/students/{id}")
+  public ResponseEntity<?> updateStudent(@RequestBody Student student,
 		  					@PathVariable Integer id) {
 	  try {
-		  Student existPlayer = service.get(id);
-		  service.save(student);
+		  studentService.updateStudent(id, student);
 		  return new ResponseEntity<>(HttpStatus.OK);
-	  } catch (NoSuchElementException e) {
+	  }
+	  catch (NoSuchElementException e) {
 		  return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	  }
   }
-  
-  @DeleteMapping("/student/{id}")
-  public void delete(@PathVariable Integer id) {
-      service.delete(id);
-  }
 
+  @DeleteMapping("api/students/{id}")
+  public void deleteStudent(@PathVariable Integer id) {
+      studentService.deleteStudent(id);
+  }
 }
-//  @PostMapping(path="/addPlayer")
-//  public @ResponseBody String addNewUser (@RequestParam String name) {
-//    Player n = new Player();
-//    n.setFirstName(name);
-//    playerRepository.save(n);
-//    return "Saved";
-//  }
-//
-//  
-//  // Returns a JSON or XML with the users
-//  @GetMapping(path="/all")
-//  public @ResponseBody Iterable<Player> getAllPlayers() {
-//   
-//    return playerRepository.findAll();
-//  }
-//}

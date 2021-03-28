@@ -14,10 +14,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 public class Machine {
 
-	private int machinePk; // auto-increment
+	private int machine_pk; // auto-increment
 
-	private String machineTag;
-	private String machineName;
+	private String machine_tag;
+	private String machine_name;
 
 	public Machine() {
 	}
@@ -29,12 +29,12 @@ public class Machine {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int getMachinePk() { return machinePk; }
-	public void setMachinePk(int machinePk) { this.machinePk = machinePk; }
+	public int getMachinePk() { return machine_pk; }
+	public void setMachinePk(int machinePk) { this.machine_pk = machinePk; }
 
-	public String getMachineTag() { return machineTag; }
-	public void setMachineTag(String machineTag) { this.machineTag = machineTag; }
+	public String getMachineTag() { return machine_tag; }
+	public void setMachineTag(String machineTag) { this.machine_tag = machineTag; }
 
-	public String getMachineName() { return machineName; }
-	public void setMachineName(String machineName) { this.machineName = machineName; }
+	public String getMachineName() { return machine_name; }
+	public void setMachineName(String machineName) { this.machine_name = machineName; }
 }
