@@ -23,12 +23,12 @@ public class Student {
 	private String lastName;
 	private short trainingLevel = 0; // default no training
 
-/*
-public enum TrainingLevel {
-	UNTRAINED, TRAINING, TRAINED
-}
-The way Java handles enums is abysmal.
-*/
+	/*
+	public enum TrainingLevel {
+		UNTRAINED, TRAINING, TRAINED
+	}
+	The way Java handles enums for use with database persistence is abysmal.
+	*/
 
 	public Student() {
 	}
