@@ -27,6 +27,7 @@ public class Student {
 	@JsonProperty(value = "net_id")
 	private String net_id;
 
+
 	@JsonProperty(value = "student_id")
 	private String student_id;
 
@@ -69,8 +70,8 @@ public class Student {
 	public void setLastName(String lastName) { this.last_name = lastName; }
 
 	public String getNetId() { return net_id; }
-	public void setNetID(String netId) { this.net_id = netId; }
-
+	public void setNetId(String net_id) { this.net_id = net_id;}
+	
 	public short getTrainingLevel() { return training_level; }
 	public void setTrainingLevel(short trainingLevel) { this.training_level = trainingLevel; }
 }

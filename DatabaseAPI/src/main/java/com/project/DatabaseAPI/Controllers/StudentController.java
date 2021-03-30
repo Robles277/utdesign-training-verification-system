@@ -23,6 +23,7 @@ import com.project.DatabaseAPI.Services.StudentService;
 import com.project.DatabaseAPI.Entities.*;
 
 @RestController
+@RequestMapping(path = "/student-api")
 public class StudentController {
 
   @Autowired
@@ -32,12 +33,12 @@ public class StudentController {
   @Autowired
   private StudentService studentService;
 
-  @GetMapping(path="api/students")
+  @GetMapping(path="/students")
   public List<Student> listStudents() {
 	  return studentService.getAllStudents();
   }
 
-  @GetMapping("api/students/{id}")
+  @GetMapping("/students/{id}")
   public ResponseEntity<Student> getStudent(@PathVariable int id) {
 	  try {
 		  Student student =  studentService.getStudent(id);
@@ -48,12 +49,12 @@ public class StudentController {
 	  }
   }
 
-  @PostMapping("api/students")
+  @PostMapping("/students")
   public void addStudent(@RequestBody Student student) {
 	  studentService.addStudent(student);
   }
 
-  @PutMapping("api/students/{id}")
+  @PutMapping("/students/{id}")
   public ResponseEntity<?> updateStudent(@RequestBody Student student,
 		  					@PathVariable Integer id) {
 	  try {
@@ -65,7 +66,7 @@ public class StudentController {
 	  }
   }
 
-  @DeleteMapping("api/students/{id}")
+  @DeleteMapping("/students/{id}")
   public void deleteStudent(@PathVariable Integer id) {
       studentService.deleteStudent(id);
   }
