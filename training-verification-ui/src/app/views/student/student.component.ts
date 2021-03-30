@@ -12,11 +12,10 @@ export class StudentComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  showBad() {  
-    alert("ERROR: You are a bad guy.");  
+  showUnknown() {  
+    alert("ERROR: No record of your netID exists in the current database. Please check your spelling or contact a staff member for assistance.");  
    }
    showGood() {  
     alert("You are allowed into the lab.");  
    }
-
 }

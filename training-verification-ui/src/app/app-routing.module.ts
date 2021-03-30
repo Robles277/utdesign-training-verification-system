@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'launch', component: LaunchComponent },
   { path: 'faculty', component: FacultyComponent },
   { path: 'student', component: StudentComponent},
-  { path: '', component: LaunchComponent }
+  { path: '', component: StudentComponent }
 ];
 
 @NgModule({

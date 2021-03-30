@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'training-verification-ui';
+
+  promptBox()  
+  {  
+    prompt('Please enter the staff password to proceed', '');  
+  }
 }
