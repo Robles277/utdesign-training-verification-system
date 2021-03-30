@@ -12,4 +12,11 @@ export class StudentComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  showBad() {  
+    alert("ERROR: You are a bad guy.");  
+   }
+   showGood() {  
+    alert("You are allowed into the lab.");  
+   }
+
 }
