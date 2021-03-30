@@ -23,7 +23,7 @@ import com.project.DatabaseAPI.Services.MachineService;
 import com.project.DatabaseAPI.Entities.*;
 
 @RestController
-@RequestMapping(path = "/machine-api")
+@RequestMapping(path = "/api")
 public class MachineController {
 
   @Autowired

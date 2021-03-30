@@ -23,7 +23,7 @@ import com.project.DatabaseAPI.Services.StudentService;
 import com.project.DatabaseAPI.Entities.*;
 
 @RestController
-@RequestMapping(path = "/student-api")
+@RequestMapping(path = "/api")
 public class StudentController {
 
   @Autowired

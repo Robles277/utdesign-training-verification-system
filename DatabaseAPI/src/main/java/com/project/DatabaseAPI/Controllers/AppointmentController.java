@@ -23,7 +23,7 @@ import com.project.DatabaseAPI.Services.AppointmentService;
 import com.project.DatabaseAPI.Entities.*;
 
 @RestController
-@RequestMapping(path = "/appointment-api")
+@RequestMapping(path = "/api")
 public class AppointmentController {
 
   @Autowired
