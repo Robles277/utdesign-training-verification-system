@@ -9,6 +9,8 @@ import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "machine")
 @EntityListeners(AuditingEntityListener.class)
@@ -16,7 +18,9 @@ public class Machine {
 
 	private int machine_pk; // auto-increment
 
+	@JsonProperty(value = "machine_tag")
 	private String machine_tag;
+	@JsonProperty(value = "machine_name")
 	private String machine_name;
 
 	public Machine() {
