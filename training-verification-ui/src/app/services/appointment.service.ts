@@ -12,15 +12,15 @@ export class AppointmentService {
   ) {
   }
 
-  // GET `api/appointments`
-  public getAllAppointments(): Observable<iAppointment[]> {
-    return null;
-  }
+  // // GET `api/appointments`
+  // public getAllAppointments(): Observable<iAppointment[]> {
+  //   return null;
+  // }
 
-  // GET `api/appointments/${pkAppointment}`
-  public getAppointment(pkAppointment: number): Observable<iAppointment> {
-    return null;
-  }
+  // // GET `api/appointments/${pkAppointment}`
+  // public getAppointment(pkAppointment: number): Observable<iAppointment> {
+  //   return null;
+  // }
 
   // POST `api/appointments`
   public addAppointment(newAppointment: iAppointment): void {
