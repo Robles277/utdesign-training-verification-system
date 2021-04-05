@@ -53,7 +53,7 @@ export class UseRecordService {
     return;
   }
 
-  // PUT `api/use-records/${updatedUseRecord.PkUseRecord}`
+  // PUT `api/use-records/${updatedUseRecord.useRecordPk}`
   public updateUseRecord(updatedUseRecord: iUseRecord): void {
     return;
   }

@@ -53,7 +53,7 @@ export class MachineService {
     return;
   }
 
-  // PUT `api/machines/${updatedMachine.PkMachine}`
+  // PUT `api/machines/${updatedMachine.machinePk}`
   public updateMachine(updatedMachine: iMachine): void {
     return;
   }

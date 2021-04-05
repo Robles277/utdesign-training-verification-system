@@ -53,7 +53,7 @@ export class AppointmentService {
     return;
   }
 
-  // PUT `api/appointments/${updatedAppointment.PkAppointment}`
+  // PUT `api/appointments/${updatedAppointment.appointmentId}`
   public updateAppointment(updatedAppointment: iAppointment): void {
     return;
   }

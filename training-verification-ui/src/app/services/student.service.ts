@@ -56,7 +56,7 @@ export class StudentService {
     return;
   }
 
-  // PUT `api/students/${updatedStudent.student_pk}`
+  // PUT `api/students/${updatedStudent.studentPk}`
   public updateStudent(updatedStudent: iStudent): void {
     return;
   }
