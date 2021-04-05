@@ -12,14 +12,40 @@ export class MachineService {
   ) {
   }
 
-  // GET `api/machines`
   public getAllMachines(): Observable<iMachine[]> {
-    return null;
+    let httpHeaders = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Cache-Control', 'no-cache');
+    let options = {headers: httpHeaders};
+
+    return this.http.get<iMachine[]>(`api/machines`, options).pipe(
+      map(
+      (results: iMachine[]) => {
+        return results;
+      },
+      (error: any) => {
+        console.error("Failed to fetch machines", error);
+        return null;
+      }
+    ));
   }
 
-  // GET `api/machines/${pkMachine}`
   public getMachine(pkMachine: number): Observable<iMachine> {
-    return null;
+    let httpHeaders = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Cache-Control', 'no-cache');
+    let options = {headers: httpHeaders};
+
+    return this.http.get<iMachine>(`api/machines/${pkMachine}`, options).pipe(
+      map(
+      (result: iMachine) => {
+        return result;
+      },
+      (error: any) => {
+        console.error(`Failed to fetch machine of pk ${pkMachine}`, error);
+        return null;
+      }
+    ));
   }
 
   // POST `api/machines`
