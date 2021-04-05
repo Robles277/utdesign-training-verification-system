@@ -18,47 +18,47 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.DatabaseAPI.Repositories.MachineRepository;
-import com.project.DatabaseAPI.Services.MachineService;
+import com.project.DatabaseAPI.Repositories.UseRecordRepository;
+import com.project.DatabaseAPI.Services.UseRecordService;
 import com.project.DatabaseAPI.Entities.*;
 
 @RestController
 @RequestMapping(path = "/api")
-public class MachineController {
+public class UseRecordController {
 
   @Autowired
-  private MachineRepository machineRepository; // do we need this in the controller?
+  private UseRecordRepository appointmentRepository; // do we need this in the controller?
 
 
   @Autowired
-  private MachineService machineService;
+  private UseRecordService useRecordService;
 
-  @GetMapping(path="/machines")
-  public List<Machine> listMachines() {
-	  return machineService.getAllMachines();
+  @GetMapping(path="/use-records")
+  public List<UseRecord> listUseRecords() {
+	  return useRecordService.getAllUseRecords();
   }
 
-  @GetMapping("/machines/{id}")
-  public ResponseEntity<Machine> getMachine(@PathVariable int id) {
+  @GetMapping("/use-records/{id}")
+  public ResponseEntity<UseRecord> getUseRecord(@PathVariable int id) {
 	  try {
-		  Machine machine = machineService.getMachine(id);
-		  return new ResponseEntity<Machine>(machine, HttpStatus.OK);
+		  UseRecord useRecord =  useRecordService.getUseRecord(id);
+		  return new ResponseEntity<UseRecord>(useRecord, HttpStatus.OK);
 	  }
 	  catch(NoSuchElementException e) {
-		  return new ResponseEntity<Machine>(HttpStatus.NOT_FOUND);
+		  return new ResponseEntity<UseRecord>(HttpStatus.NOT_FOUND);
 	  }
   }
 
-  @PostMapping("/machines")
-  public void addMachine(@RequestBody Machine machine) {
-	  machineService.addMachine(machine);
+  @PostMapping("/use-records")
+  public void addUseRecord(@RequestBody UseRecord useRecord) {
+	  useRecordService.addUseRecord(useRecord);
   }
 
-  @PutMapping("/machines/{id}")
-  public ResponseEntity<?> updateMachine(@RequestBody Machine machine,
+  @PutMapping("/use-records/{id}")
+  public ResponseEntity<?> updateUseRecord(@RequestBody UseRecord useRecord,
 		  					@PathVariable Integer id) {
 	  try {
-		  machineService.updateMachine(id, machine);
+		  useRecordService.updateUseRecord(id, useRecord);
 		  return new ResponseEntity<>(HttpStatus.OK);
 	  }
 	  catch (NoSuchElementException e) {
@@ -66,8 +66,8 @@ public class MachineController {
 	  }
   }
 
-  @DeleteMapping("/machines/{id}")
-  public void deleteMachine(@PathVariable Integer id) {
-      machineService.deleteMachine(id);
+  @DeleteMapping("/use-records/{id}")
+  public void deleteUseRecord(@PathVariable Integer id) {
+	  useRecordService.deleteUseRecord(id);
   }
 }

@@ -39,9 +39,9 @@ public class AppointmentController {
   }
 
   @GetMapping("/appointments/{id}")
-  public ResponseEntity<Appointment> getMachine(@PathVariable int id) {
+  public ResponseEntity<Appointment> getAppointment(@PathVariable int id) {
 	  try {
-		  Appointment appointment =  appointmentService.getAppointment(id);
+		  Appointment appointment = appointmentService.getAppointment(id);
 		  return new ResponseEntity<Appointment>(appointment, HttpStatus.OK);
 	  }
 	  catch(NoSuchElementException e) {
@@ -50,12 +50,12 @@ public class AppointmentController {
   }
 
   @PostMapping("/appointments")
-  public void addStudent(@RequestBody Appointment appointment) {
+  public void addAppointment(@RequestBody Appointment appointment) {
 	  appointmentService.addAppointment(appointment);
   }
 
   @PutMapping("/appointments/{id}")
-  public ResponseEntity<?> updateStudent(@RequestBody Appointment appointment,
+  public ResponseEntity<?> updateAppointment(@RequestBody Appointment appointment,
 		  					@PathVariable Integer id) {
 	  try {
 		  appointmentService.updateAppointment(id, appointment);
@@ -67,7 +67,7 @@ public class AppointmentController {
   }
 
   @DeleteMapping("/appointments/{id}")
-  public void deleteStudent(@PathVariable Integer id) {
+  public void deleteAppointment(@PathVariable Integer id) {
 	  appointmentService.deleteAppointment(id);
   }
 }

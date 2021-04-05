@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import com.project.DatabaseAPI.Entities.*;
 
 @EnableJpaRepositories
-@EntityScan(basePackages = "com.project.DatabaseAPI.Entities.Student")
+@EntityScan(basePackages = "com.project.DatabaseAPI.Entities")
 public interface StudentRepository extends JpaRepository<Student, Integer> {
 
 }

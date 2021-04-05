@@ -41,7 +41,7 @@ public class StudentController {
   @GetMapping("/students/{id}")
   public ResponseEntity<Student> getStudent(@PathVariable int id) {
 	  try {
-		  Student student =  studentService.getStudent(id);
+		  Student student = studentService.getStudent(id);
 		  return new ResponseEntity<Student>(student, HttpStatus.OK);
 	  }
 	  catch(NoSuchElementException e) {

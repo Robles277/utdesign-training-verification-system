@@ -1,59 +1,63 @@
 package com.project.DatabaseAPI.Entities;
 
 import java.util.Date;
-import java.time.Duration;
+import java.sql.Time;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name = "UseRecord")
+@Table(name = "use_record")
 @EntityListeners(AuditingEntityListener.class)
 public class UseRecord {
 
-	private int useRecordPk; // auto-increment
+	private int use_record_pk; // auto-increment
 
-	private int studentFk;
-	private int machineFk;
+	private int student_student_pk;
 
-	private Date dateOfSignIn;
-	private Date dateOfSignOut;
-	private Duration sessionLength; // virtual attribute in database
+	private int machine_machine_pk;
+
+	private Date date_of_sign_in;
+
+	private Date date_of_sign_out;
+
+	private Time session_length; // virtual attribute in database
 
 	public UseRecord() {
 	}
 
-	public UseRecord(Date dateOfSignIn, Date dateOfSignOut, Duration sessionLength, int studentFk, int machineFk) {
-		this.dateOfSignIn = dateOfSignIn;
-		this.dateOfSignOut = dateOfSignOut;
-		this.sessionLength = sessionLength;
-		this.studentFk = studentFk;
-		this.machineFk = machineFk;
+	public UseRecord(Date date_of_sign_in, Date date_of_sign_out, Time session_length, int student_student_pk, int machine_machine_pk) {
+		this.date_of_sign_in = date_of_sign_in;
+		this.date_of_sign_out = date_of_sign_out;
+		this.session_length = session_length;
+		this.student_student_pk = student_student_pk;
+		this.machine_machine_pk = machine_machine_pk;
 	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int getUseRecordPk() { return useRecordPk; }
-	public void setUseRecordPk(int useRecordPk) { this.useRecordPk = useRecordPk; }
+	public int getUseRecordPk() { return use_record_pk; }
+	public void setUseRecordPk(int use_record_pk) { this.use_record_pk = use_record_pk; }
 
-	public int getStudentFk() { return studentFk; }
-	public void setStudentFk(int studentFk) { this.studentFk = studentFk; }
+	public int getStudentStudentPk() { return student_student_pk; }
+	public void setStudentStudentPk(int student_student_pk) { this.student_student_pk = student_student_pk; }
 
-	public int getMachineFk() { return machineFk; }
-	public void setMachineFk(int machineFk) { this.machineFk = machineFk; }
+	public int getMachineMachinePk() { return machine_machine_pk; }
+	public void setMachineMachinePk(int machine_machine_pk) { this.machine_machine_pk = machine_machine_pk; }
 
-	public Date getDateOfSignIn() { return dateOfSignIn; }
-	public void setDateOfSignIn(Date dateOfSignIn) { this.dateOfSignIn = dateOfSignIn; }
+	public Date getDateOfSignIn() { return date_of_sign_in; }
+	public void setDateOfSignIn(Date date_of_sign_in) { this.date_of_sign_in = date_of_sign_in; }
 
-	public Date getDateOfSignOut() { return dateOfSignOut; }
-	public void setDateOfSignOut(Date dateOfSignOut) { this.dateOfSignOut = dateOfSignOut; }
+	public Date getDateOfSignOut() { return date_of_sign_out; }
+	public void setDateOfSignOut(Date date_of_sign_out) { this.date_of_sign_out = date_of_sign_out; }
 
-	public Duration getSessionLength() { return sessionLength; }
-	public void setSessionLength(Duration sessionLength) { this.sessionLength = sessionLength; }
+	public Time getSessionLength() { return session_length; }
+	public void setSessionLength(Time session_length) { this.session_length = session_length; }
 }
