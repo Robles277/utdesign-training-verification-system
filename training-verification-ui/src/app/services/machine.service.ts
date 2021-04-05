@@ -4,7 +4,7 @@ import { iMachine } from '../interfaces';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class MachineService {
 
   constructor(

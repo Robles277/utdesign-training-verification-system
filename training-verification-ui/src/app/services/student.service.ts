@@ -1,26 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { iStudent } from '../interfaces';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class StudentService {
   constructor(
     private http: HttpClient
   ) {
   }
-   private requestUrl = environment.fabricationShopAPIRoot + '/students';
 
-
-   public getAllStudents(): Observable<iStudent[]> {
+  public getAllStudents(): Observable<iStudent[]> {
        let httpHeaders = new HttpHeaders()
          .set('Content-Type', 'application/json')
          .set('Cache-Control', 'no-cache');
        let options = {headers: httpHeaders};
-
        return this.http.get<iStudent[]>(`api/students`, options).pipe(
          map(
          (results: iStudent[]) => {

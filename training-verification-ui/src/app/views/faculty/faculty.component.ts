@@ -23,11 +23,8 @@ export class FacultyComponent implements OnInit {
       this.students = results[0];
     });
   }
-  
-  async getAllStudents() {
-    this.studentService.getAllStudents().subscribe((student: iStudent[]) => {
-      this.students = student
-    })
-}
 
+  debugStudents(): void {
+    console.log(this.students);
+  }
 }
