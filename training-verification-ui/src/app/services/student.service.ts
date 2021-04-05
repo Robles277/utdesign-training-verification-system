@@ -53,7 +53,7 @@ export class StudentService {
     return;
   }
 
-  // PUT `api/students/${updatedStudent.PkStudent}`
+  // PUT `api/students/${updatedStudent.student_pk}`
   public updateStudent(updatedStudent: iStudent): void {
     return;
   }

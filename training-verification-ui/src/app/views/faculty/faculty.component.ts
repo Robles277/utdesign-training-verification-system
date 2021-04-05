@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { StudentService } from '../../services/student.service';
+import { iStudent } from '../../interfaces';
 
 @Component({
   selector: 'app-faculty',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FacultyComponent implements OnInit {
 
-  constructor() { }
+  students: iStudent[] = [];
+
+  constructor(
+    private studentService: StudentService
+  ) {
+  }
 
   ngOnInit(): void {
+    Promise.all([
+      this.studentService.getAllStudents().toPromise(),
+    ]).then((results) => {
+      this.students = results[0];
+    });
   }
 
 }
