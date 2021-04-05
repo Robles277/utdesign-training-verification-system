@@ -15,9 +15,23 @@ export class StudentService {
    private requestUrl = environment.fabricationShopAPIRoot + '/students';
 
 
-  public getAllStudents(): Observable<Object> {
-    return this.http.get(this.requestUrl)
-  }
+   public getAllStudents(): Observable<iStudent[]> {
+       let httpHeaders = new HttpHeaders()
+         .set('Content-Type', 'application/json')
+         .set('Cache-Control', 'no-cache');
+       let options = {headers: httpHeaders};
+
+       return this.http.get<iStudent[]>(`api/students`, options).pipe(
+         map(
+         (results: iStudent[]) => {
+           return results;
+         },
+         (error: any) => {
+           console.error("Failed to fetch students", error);
+           return null;
+         }
+       ));
+     }
 
   public getStudent(pkStudent: number): Observable<iStudent> {
     let httpHeaders = new HttpHeaders()
@@ -42,7 +56,7 @@ export class StudentService {
     return;
   }
 
-  // PUT `api/students/${updatedStudent.PkStudent}`
+  // PUT `api/students/${updatedStudent.student_pk}`
   public updateStudent(updatedStudent: iStudent): void {
     return;
   }

@@ -2,12 +2,12 @@ import { TrainingLevel } from './enums';
 import { Duration } from '@js-joda/core'; // https://js-joda.github.io/js-joda/manual/Duration.html
 
 export interface iStudent {
-  PkStudent: number;
-  StudentId: string;
-  NetId: string;
-  FirstName: string;
-  LastName: string;
-  TrainingLevel: TrainingLevel; // this might not work with how Java handles enums
+  student_pk: number;
+  student_id: string;
+  net_id: string;
+  first_name: string;
+  last_name: string;
+  training_level: TrainingLevel; // this might not work with how Java handles enums
 }
 
 export interface iMachine {

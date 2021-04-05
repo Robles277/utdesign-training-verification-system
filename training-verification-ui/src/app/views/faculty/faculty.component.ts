@@ -1,27 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { StudentService } from 'src/app/services/student.service'
-import { iStudent } from 'src/app/interfaces';
-import { Observable } from 'rxjs';
+import { StudentService } from '../../services/student.service';
+import { iStudent } from '../../interfaces';
+
 @Component({
   selector: 'app-faculty',
   templateUrl: './faculty.component.html',
   styleUrls: ['./faculty.component.css']
 })
 export class FacultyComponent implements OnInit {
-  
-  public students: iStudent[]
+
+  students: iStudent[] = [];
 
   constructor(
-    private studentService: StudentService,
-
-    ) {}
-    
+    private studentService: StudentService
+  ) {
+  }
 
   ngOnInit(): void {
+    Promise.all([
+      this.studentService.getAllStudents().toPromise(),
+    ]).then((results) => {
+      this.students = results[0];
+    });
   }
+  
   async getAllStudents() {
     this.studentService.getAllStudents().subscribe((student: iStudent[]) => {
-      this.students = student  
+      this.students = student
     })
 }
 
