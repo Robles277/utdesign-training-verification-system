@@ -12,14 +12,40 @@ export class UseRecordService {
   ) {
   }
 
-  // GET `api/use-records`
   public getAllUseRecords(): Observable<iUseRecord[]> {
-    return null;
+    let httpHeaders = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Cache-Control', 'no-cache');
+    let options = {headers: httpHeaders};
+
+    return this.http.get<iUseRecord[]>(`api/use-records`, options).pipe(
+      map(
+      (results: iUseRecord[]) => {
+        return results;
+      },
+      (error: any) => {
+        console.error("Failed to fetch use records", error);
+        return null;
+      }
+    ));
   }
 
-  // GET `api/use-records/${pkUseRecord}`
   public getUseRecord(pkUseRecord: number): Observable<iUseRecord> {
-    return null;
+    let httpHeaders = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Cache-Control', 'no-cache');
+    let options = {headers: httpHeaders};
+
+    return this.http.get<iUseRecord>(`api/use-records/${pkUseRecord}`, options).pipe(
+      map(
+      (result: iUseRecord) => {
+        return result;
+      },
+      (error: any) => {
+        console.error(`Failed to fetch use record of pk ${pkUseRecord}`, error);
+        return null;
+      }
+    ));
   }
 
   // POST `api/use-records`

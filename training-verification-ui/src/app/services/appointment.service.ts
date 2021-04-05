@@ -12,14 +12,40 @@ export class AppointmentService {
   ) {
   }
 
-  // GET `api/appointments`
   public getAllAppointments(): Observable<iAppointment[]> {
-    return null;
+    let httpHeaders = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Cache-Control', 'no-cache');
+    let options = {headers: httpHeaders};
+
+    return this.http.get<iAppointment[]>(`api/appointments`, options).pipe(
+      map(
+      (results: iAppointment[]) => {
+        return results;
+      },
+      (error: any) => {
+        console.error("Failed to fetch appointments", error);
+        return null;
+      }
+    ));
   }
 
-  // GET `api/appointments/${pkAppointment}`
   public getAppointment(pkAppointment: number): Observable<iAppointment> {
-    return null;
+    let httpHeaders = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Cache-Control', 'no-cache');
+    let options = {headers: httpHeaders};
+
+    return this.http.get<iAppointment>(`api/appointments/${pkAppointment}`, options).pipe(
+      map(
+      (result: iAppointment) => {
+        return result;
+      },
+      (error: any) => {
+        console.error(`Failed to fetch appointment of pk ${pkAppointment}`, error);
+        return null;
+      }
+    ));
   }
 
   // POST `api/appointments`
