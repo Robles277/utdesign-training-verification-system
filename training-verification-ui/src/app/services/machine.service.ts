@@ -4,7 +4,7 @@ import { iMachine } from '../interfaces';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class MachineService {
 
   constructor(
@@ -53,7 +53,7 @@ export class MachineService {
     return;
   }
 
-  // PUT `api/machines/${updatedMachine.PkMachine}`
+  // PUT `api/machines/${updatedMachine.machinePk}`
   public updateMachine(updatedMachine: iMachine): void {
     return;
   }

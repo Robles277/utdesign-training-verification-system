@@ -18,23 +18,17 @@ import com.sun.istack.NotNull;
 @EntityListeners(AuditingEntityListener.class)
 public class Student {
 
-	@JsonProperty(value = "first_name")
 	private String first_name;
 
-	@JsonProperty(value = "last_name")
 	private String last_name;
 
-	@JsonProperty(value = "net_id")
 	private String net_id;
 
 
-	@JsonProperty(value = "student_id")
 	private String student_id;
 
-	@JsonProperty(value = "student_pk")
 	private int student_pk;
 
-	@JsonProperty(value = "training_level")
 	private short training_level = 0;
 
 	/*
@@ -71,7 +65,7 @@ public class Student {
 
 	public String getNetId() { return net_id; }
 	public void setNetId(String net_id) { this.net_id = net_id;}
-	
+
 	public short getTrainingLevel() { return training_level; }
 	public void setTrainingLevel(short trainingLevel) { this.training_level = trainingLevel; }
 }

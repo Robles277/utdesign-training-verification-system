@@ -4,7 +4,7 @@ import { iAppointment } from '../interfaces';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class AppointmentService {
 
   constructor(
@@ -53,7 +53,7 @@ export class AppointmentService {
     return;
   }
 
-  // PUT `api/appointments/${updatedAppointment.PkAppointment}`
+  // PUT `api/appointments/${updatedAppointment.appointmentId}`
   public updateAppointment(updatedAppointment: iAppointment): void {
     return;
   }

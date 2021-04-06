@@ -4,7 +4,7 @@ import { iUseRecord } from '../interfaces';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class UseRecordService {
 
   constructor(
@@ -53,7 +53,7 @@ export class UseRecordService {
     return;
   }
 
-  // PUT `api/use-records/${updatedUseRecord.PkUseRecord}`
+  // PUT `api/use-records/${updatedUseRecord.useRecordPk}`
   public updateUseRecord(updatedUseRecord: iUseRecord): void {
     return;
   }

@@ -3,32 +3,31 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { iStudent } from '../interfaces';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class StudentService {
-
   constructor(
     private http: HttpClient
   ) {
   }
 
   public getAllStudents(): Observable<iStudent[]> {
-    let httpHeaders = new HttpHeaders()
-      .set('Content-Type', 'application/json')
-      .set('Cache-Control', 'no-cache');
-    let options = {headers: httpHeaders};
-
-    return this.http.get<iStudent[]>(`api/students`, options).pipe(
-      map(
-      (results: iStudent[]) => {
-        return results;
-      },
-      (error: any) => {
-        console.error("Failed to fetch students", error);
-        return null;
-      }
-    ));
-  }
+       let httpHeaders = new HttpHeaders()
+         .set('Content-Type', 'application/json')
+         .set('Cache-Control', 'no-cache');
+       let options = {headers: httpHeaders};
+       return this.http.get<iStudent[]>(`api/students`, options).pipe(
+         map(
+         (results: iStudent[]) => {
+           return results;
+         },
+         (error: any) => {
+           console.error("Failed to fetch students", error);
+           return null;
+         }
+       ));
+     }
 
   public getStudent(pkStudent: number): Observable<iStudent> {
     let httpHeaders = new HttpHeaders()
@@ -53,7 +52,7 @@ export class StudentService {
     return;
   }
 
-  // PUT `api/students/${updatedStudent.student_pk}`
+  // PUT `api/students/${updatedStudent.studentPk}`
   public updateStudent(updatedStudent: iStudent): void {
     return;
   }
