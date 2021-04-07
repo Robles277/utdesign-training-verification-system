@@ -48,18 +48,57 @@ export class MachineService {
     ));
   }
 
-  // POST `api/machines`
-  public addMachine(newMachine: iMachine): void {
-    return;
+  public addMachine(newMachine: iMachine): Observable<boolean> {
+    let httpHeaders = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Cache-Control', 'no-cache');
+    let options = {headers: httpHeaders};
+
+    return this.http.post(`api/machines`, newMachine, options).pipe(
+      map(
+        () => {
+          return true;
+        },
+        (error: any) => {
+          console.error("Failed to add machine", error);
+          return false;
+        }
+      ));
   }
 
-  // PUT `api/machines/${updatedMachine.machinePk}`
-  public updateMachine(updatedMachine: iMachine): void {
-    return;
+  public updateMachine(updatedMachine: iMachine): Observable<boolean> {
+    let httpHeaders = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Cache-Control', 'no-cache');
+    let options = {headers: httpHeaders};
+
+    return this.http.put(`api/machines/${updatedMachine.machinePk}`, updatedMachine, options).pipe(
+      map(
+        () => {
+          return true;
+        },
+        (error: any) => {
+          console.error("Failed to update machine", error);
+          return false;
+        }
+      ));
   }
 
-  // DELETE `api/machines/${pkToDelete}`
-  public deleteMachine(pkToDelete: number): void {
-    return;
+  public deleteMachine(pkToDelete: number): Observable<boolean> {
+    let httpHeaders = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Cache-Control', 'no-cache');
+    let options = {headers: httpHeaders};
+
+    return this.http.delete(`api/machines/${pkToDelete}`, options).pipe(
+      map(
+        () => {
+          return true;
+        },
+        (error: any) => {
+          console.error("Failed to delete machine", error);
+          return false;
+        }
+      ));
   }
 }

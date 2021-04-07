@@ -48,18 +48,57 @@ export class AppointmentService {
     ));
   }
 
-  // POST `api/appointments`
-  public addAppointment(newAppointment: iAppointment): void {
-    return;
+  public addAppointment(newAppointment: iAppointment): Observable<boolean> {
+    let httpHeaders = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Cache-Control', 'no-cache');
+    let options = {headers: httpHeaders};
+
+    return this.http.post(`api/appointments`, newAppointment, options).pipe(
+      map(
+        () => {
+          return true;
+        },
+        (error: any) => {
+          console.error("Failed to add appointment", error);
+          return false;
+        }
+      ));
   }
 
-  // PUT `api/appointments/${updatedAppointment.appointmentId}`
-  public updateAppointment(updatedAppointment: iAppointment): void {
-    return;
+  public updateAppointment(updatedAppointment: iAppointment): Observable<boolean> {
+    let httpHeaders = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Cache-Control', 'no-cache');
+    let options = {headers: httpHeaders};
+
+    return this.http.put(`api/appointments/${updatedAppointment.idAppointment}`, updatedAppointment, options).pipe(
+      map(
+        () => {
+          return true;
+        },
+        (error: any) => {
+          console.error("Failed to update appointment", error);
+          return false;
+        }
+      ));
   }
 
-  // DELETE `api/appointments/${pkToDelete}`
-  public deleteAppointment(pkToDelete: number): void {
-    return;
+  public deleteAppointment(pkToDelete: number): Observable<boolean> {
+    let httpHeaders = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Cache-Control', 'no-cache');
+    let options = {headers: httpHeaders};
+
+    return this.http.delete(`api/appointments/${pkToDelete}`, options).pipe(
+      map(
+        () => {
+          return true;
+        },
+        (error: any) => {
+          console.error("Failed to delete appointment", error);
+          return false;
+        }
+      ));
   }
 }

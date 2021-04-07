@@ -24,7 +24,7 @@ export class StaffComponent implements OnInit {
   }
 
   scheduleNew() {
-    
+
     alert("scheduleNew()");
   }
   manageSchedule() {
@@ -35,6 +35,17 @@ export class StaffComponent implements OnInit {
   }
   viewLog() {
     alert("viewLog()");
+  }
+
+  postStudentTest() {
+    let newStudent: iStudent = {
+      studentId: "1234567890",
+      netId: "tes100100",
+      firstName: "Test",
+      lastName: "McTesterson",
+      trainingLevel: 0,
+    };
+    this.studentService.addStudent(newStudent).subscribe(result => {console.log("Post service: ", result)});
   }
 
 

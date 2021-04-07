@@ -48,18 +48,57 @@ export class UseRecordService {
     ));
   }
 
-  // POST `api/use-records`
-  public addUseRecord(newUseRecord: iUseRecord): void {
-    return;
+  public addUseRecord(newUseRecord: iUseRecord): Observable<boolean> {
+    let httpHeaders = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Cache-Control', 'no-cache');
+    let options = {headers: httpHeaders};
+
+    return this.http.post(`api/use-records`, newUseRecord, options).pipe(
+      map(
+        () => {
+          return true;
+        },
+        (error: any) => {
+          console.error("Failed to add use record", error);
+          return false;
+        }
+      ));
   }
 
-  // PUT `api/use-records/${updatedUseRecord.useRecordPk}`
-  public updateUseRecord(updatedUseRecord: iUseRecord): void {
-    return;
+  public updateUseRecord(updatedUseRecord: iUseRecord): Observable<boolean> {
+    let httpHeaders = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Cache-Control', 'no-cache');
+    let options = {headers: httpHeaders};
+
+    return this.http.put(`api/use-records/${updatedUseRecord.useRecordPk}`, updatedUseRecord, options).pipe(
+      map(
+        () => {
+          return true;
+        },
+        (error: any) => {
+          console.error("Failed to update use record", error);
+          return false;
+        }
+      ));
   }
 
-  // DELETE `api/use-records/${pkToDelete}`
-  public deleteUseRecord(pkToDelete: number): void {
-    return;
+  public deleteUseRecord(pkToDelete: number): Observable<boolean> {
+    let httpHeaders = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Cache-Control', 'no-cache');
+    let options = {headers: httpHeaders};
+
+    return this.http.delete(`api/use-records/${pkToDelete}`, options).pipe(
+      map(
+        () => {
+          return true;
+        },
+        (error: any) => {
+          console.error("Failed to delete use record", error);
+          return false;
+        }
+      ));
   }
 }
