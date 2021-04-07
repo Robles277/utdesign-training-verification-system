@@ -13,40 +13,12 @@
           <th>Firstname</th>
           <th>NetID</th>
           <th>Training Level</th>
-          <th>Time</th>
-          <th>Staff Member</th>
         </tr>
-        <tr>
-            <td>Komplin</td>
-            <td>Brandon</td>
-            <td>abc123456</td>
-            <td>NOT TRAINED</td>
-            <td>2:00pm</td>
-            <td>-</td>
-          </tr>
-        <tr>
-            <td>Soname</td>
-            <td>Simeon</td>
-            <td>abc123456</td>
-            <td>IN TRAINING</td>
-            <td>2:30pm</td>
-            <td>Amanda Robles</td>
-          </tr>
-        <tr>
-          <td>Ireland</td>
-          <td>Wesley</td>
-          <td>abc123456</td>
-          <td>NOT TRAINED</td>
-          <td>3:00pm</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>Pin</td>
-          <td>Autumn</td>
-          <td>abc123456</td>
-          <td>NOT TRAINED</td>
-          <td>3:30pm</td>
-          <td>-</td>
-        </tr>
+       <tr *ngFor="let var of students; let i = index">
+          <td>{{students[i].lastName}}</td>
+          <td>{{students[i].firstName}}</td>
+          <td>{{students[i].netId}}</td>
+          <td>{{students[i].trainingLevel}}</td>
+       </tr>
       </table>
 </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-//import { StudentService } from '../../services/student.service';
+import { StudentService } from '../../services/student.service';
 import { iStudent } from '../../interfaces';
 
 @Component({
@@ -11,31 +11,29 @@ export class StaffComponent implements OnInit {
 
   students: iStudent[] = [];
 
-  constructor() 
-  {}
+  constructor(
+    private studentService: StudentService
+  ) { }
 
   ngOnInit(): void {
-    // Promise.all([
-    //   this.studentService.getAllStudents().toPromise(),
-    // ]).then((results) => {
-    //   this.students = results[0];
-    // });
+    Promise.all([
+      this.studentService.getAllStudents().toPromise(),
+    ]).then((results) => {
+      this.students = results[0];
+    });
   }
 
-  scheduleNew()
-  {
+  scheduleNew() {
+    
     alert("scheduleNew()");
   }
-  manageSchedule()
-  {
+  manageSchedule() {
     alert("manageSchedule()");
   }
-  manageStudents()
-  {
+  manageStudents() {
     alert("manageStudents()");
   }
-  viewLog()
-  {
+  viewLog() {
     alert("viewLog()");
   }
 
