@@ -1,0 +1,16 @@
+<h1 align="center">All Students</h1>
+<p align="center">March 23rd, 2020</p>
+<table style="width:100%">
+    <tr>
+      <th>Lastname</th>
+      <th>Firstname</th>
+      <th>NetID</th>
+      <th>Training Level</th>
+    </tr>
+   <tr *ngFor="let var of students; let i = index">
+      <td>{{students[i].lastName}}</td>
+      <td>{{students[i].firstName}}</td>
+      <td>{{students[i].netId}}</td>
+      <td>{{students[i].trainingLevel}}</td>
+   </tr>
+  </table>

@@ -28,19 +28,19 @@ export class StudentService {
        ));
      }
 
-  public getStudent(pkStudent: number): Observable<iStudent> {
+  public getStudent(netIdStudent: number): Observable<iStudent> {
     let httpHeaders = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Cache-Control', 'no-cache');
     let options = {headers: httpHeaders};
 
-    return this.http.get<iStudent>(`api/students/${pkStudent}`, options).pipe(
+    return this.http.get<iStudent>(`api/students/${netIdStudent}`, options).pipe(
       map(
       (result: iStudent) => {
         return result;
       },
       (error: any) => {
-        console.error(`Failed to fetch student of pk ${pkStudent}`, error);
+        console.error(`Failed to fetch student of pk ${netIdStudent}`, error);
         return null;
       }
     ));

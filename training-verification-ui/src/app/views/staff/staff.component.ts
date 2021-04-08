@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../../services/student.service';
 import { iStudent } from '../../interfaces';
+import { ShowStudentsComponent } from 'src/app/components/show-students/show-students.component';
 
 @Component({
   selector: 'app-staff',
@@ -10,6 +11,7 @@ import { iStudent } from '../../interfaces';
 export class StaffComponent implements OnInit {
 
   students: iStudent[] = [];
+  showStudents: boolean = false;
 
   constructor(
     private studentService: StudentService
@@ -36,7 +38,9 @@ export class StaffComponent implements OnInit {
   viewLog() {
     alert("viewLog()");
   }
-
+  showAllStudents() {
+    this.showStudents = true;
+  }
   postStudentTest() {
     let newStudent: iStudent = {
       studentId: "1234567890",
