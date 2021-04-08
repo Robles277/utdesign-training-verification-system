@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-//import { StudentService } from '../../services/student.service';
+import { StudentService } from '../../services/student.service';
 import { iStudent } from '../../interfaces';
+import { ShowStudentsComponent } from 'src/app/components/show-students/show-students.component';
 
 @Component({
   selector: 'app-staff',
@@ -10,33 +11,45 @@ import { iStudent } from '../../interfaces';
 export class StaffComponent implements OnInit {
 
   students: iStudent[] = [];
+  showStudents: boolean = false;
 
-  constructor() 
-  {}
+  constructor(
+    private studentService: StudentService
+  ) { }
 
   ngOnInit(): void {
-    // Promise.all([
-    //   this.studentService.getAllStudents().toPromise(),
-    // ]).then((results) => {
-    //   this.students = results[0];
-    // });
+    Promise.all([
+      this.studentService.getAllStudents().toPromise(),
+    ]).then((results) => {
+      this.students = results[0];
+    });
   }
 
-  scheduleNew()
-  {
+  scheduleNew() {
+
     alert("scheduleNew()");
   }
-  manageSchedule()
-  {
+  manageSchedule() {
     alert("manageSchedule()");
   }
-  manageStudents()
-  {
+  manageStudents() {
     alert("manageStudents()");
   }
-  viewLog()
-  {
+  viewLog() {
     alert("viewLog()");
+  }
+  showAllStudents() {
+    this.showStudents = true;
+  }
+  postStudentTest() {
+    let newStudent: iStudent = {
+      studentId: "1234567890",
+      netId: "tes100100",
+      firstName: "Test",
+      lastName: "McTesterson",
+      trainingLevel: 0,
+    };
+    this.studentService.addStudent(newStudent).subscribe(result => {console.log("Post service: ", result)});
   }
 
 

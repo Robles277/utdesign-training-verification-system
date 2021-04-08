@@ -3,50 +3,9 @@
 <div id="buffer">
     <button class="button button1" (click)='scheduleNew()'>Schedule New Student</button><br>
     <button class="button button1" (click)='manageSchedule()'>Manage Schedule</button><br>
-    <button class="button button1" (click)='manageStudents()'>Manage Students</button><br>
+    <button class="button button1" (click)='showAllStudents()'>Show All Students</button><br>
+    <button class="button button1" (click)='postStudentTest()'>Manage Students</button><br>
     <button class="button button1" (click)='viewLog()'>View Log</button>
-    <h1 align="center">Manage Schedule</h1>
-    <p align="center">March 23rd, 2020</p>
-    <table style="width:100%">
-        <tr>
-          <th>Lastname</th>
-          <th>Firstname</th>
-          <th>NetID</th>
-          <th>Training Level</th>
-          <th>Time</th>
-          <th>Staff Member</th>
-        </tr>
-        <tr>
-            <td>Komplin</td>
-            <td>Brandon</td>
-            <td>abc123456</td>
-            <td>NOT TRAINED</td>
-            <td>2:00pm</td>
-            <td>-</td>
-          </tr>
-        <tr>
-            <td>Soname</td>
-            <td>Simeon</td>
-            <td>abc123456</td>
-            <td>IN TRAINING</td>
-            <td>2:30pm</td>
-            <td>Amanda Robles</td>
-          </tr>
-        <tr>
-          <td>Ireland</td>
-          <td>Wesley</td>
-          <td>abc123456</td>
-          <td>NOT TRAINED</td>
-          <td>3:00pm</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>Pin</td>
-          <td>Autumn</td>
-          <td>abc123456</td>
-          <td>NOT TRAINED</td>
-          <td>3:30pm</td>
-          <td>-</td>
-        </tr>
-      </table>
+
+      <app-show-students *ngIf="showStudents"></app-show-students>
 </div>

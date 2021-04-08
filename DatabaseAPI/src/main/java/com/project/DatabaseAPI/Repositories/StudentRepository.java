@@ -10,4 +10,7 @@ import com.project.DatabaseAPI.Entities.*;
 @EntityScan(basePackages = "com.project.DatabaseAPI.Entities")
 public interface StudentRepository extends JpaRepository<Student, Integer> {
 
+	  Student findByNetId(String netId);
+
+	
 }

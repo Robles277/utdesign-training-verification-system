@@ -3,18 +3,16 @@ import { StudentService } from '../../services/student.service';
 import { iStudent } from '../../interfaces';
 
 @Component({
-  selector: 'app-faculty',
-  templateUrl: './faculty.component.html',
-  styleUrls: ['./faculty.component.css']
+  selector: 'app-show-students',
+  templateUrl: './show-students.component.html',
+  styleUrls: ['./show-students.component.css']
 })
-export class FacultyComponent implements OnInit {
-
+export class ShowStudentsComponent implements OnInit {
+  
   students: iStudent[] = [];
-
-  constructor(
+    constructor(
     private studentService: StudentService
-  ) {
-  }
+  ) { }
 
   ngOnInit(): void {
     Promise.all([
@@ -24,7 +22,4 @@ export class FacultyComponent implements OnInit {
     });
   }
 
-  debugStudents(): void {
-    console.log(this.students);
-  }
 }

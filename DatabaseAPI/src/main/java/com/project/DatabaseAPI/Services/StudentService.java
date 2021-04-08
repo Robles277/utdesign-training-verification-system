@@ -25,7 +25,10 @@ public class StudentService {
 	public void addStudent(Student student) {
 		studentRepository.save(student);
 	}
-
+	
+	public Student findStudent(String netId) {
+		return studentRepository.findByNetId(netId);
+	}
   public void updateStudent(Integer id, Student updatedStudent) {
     Student existingStudent = getStudent(id);
     if (existingStudent != null) {
