@@ -1,7 +1,6 @@
 package com.project.DatabaseAPI.Entities;
 
 import java.util.Date;
-import java.sql.Time;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import com.fasterxml.jackson.annotation.JsonProperty;
+
+import org.hibernate.annotations.Formula;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
@@ -27,13 +27,14 @@ public class UseRecord {
 	private Date date_of_sign_in;
 
 	private Date date_of_sign_out;
-
-	private Time session_length; // virtual attribute in database
+	
+	@Column(name="session_length", nullable=true, insertable=false, updatable=false)
+	private int session_length; // virtual attribute in database
 
 	public UseRecord() {
 	}
 
-	public UseRecord(Date date_of_sign_in, Date date_of_sign_out, Time session_length, int student_student_pk, int machine_machine_pk) {
+	public UseRecord(Date date_of_sign_in, Date date_of_sign_out, int session_length, int student_student_pk, int machine_machine_pk) {
 		this.date_of_sign_in = date_of_sign_in;
 		this.date_of_sign_out = date_of_sign_out;
 		this.session_length = session_length;
@@ -57,7 +58,8 @@ public class UseRecord {
 
 	public Date getDateOfSignOut() { return date_of_sign_out; }
 	public void setDateOfSignOut(Date date_of_sign_out) { this.date_of_sign_out = date_of_sign_out; }
-
-	public Time getSessionLength() { return session_length; }
-	public void setSessionLength(Time session_length) { this.session_length = session_length; }
+	
+	@Formula(value = "minute_diff(date_of_sign_in, date_of_sign_out)")
+	public int getSessionLength() { return session_length; }
+	public void setSessionLength(int session_length) { this.session_length = session_length; }
 }

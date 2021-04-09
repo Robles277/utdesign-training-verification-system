@@ -20,7 +20,7 @@ export interface iUseRecord {
   useRecordPk?: number;
   dateOfSignIn?: Date;
   dateOfSignOut?: Date;
-  sessionLength?: Duration;
+  sessionLength?: number;
   studentStudentPk: number;
   machineMachinePk: number;
 }
@@ -30,5 +30,5 @@ export interface iAppointment {
   organizer: string;
   startTime: Date;
   endTime: Date;
-  duration?: Duration;
+  duration?: number;
 }

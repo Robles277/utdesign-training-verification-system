@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../../services/student.service';
-import { iStudent } from '../../interfaces';
+import { iAppointment, iStudent, iUseRecord } from '../../interfaces';
 import { ShowStudentsComponent } from 'src/app/components/show-students/show-students.component';
+import { AppointmentService } from 'src/app/services/appointment.service';
+import { UseRecordService } from 'src/app/services/use-record.service';
 
 @Component({
   selector: 'app-staff',
@@ -14,7 +16,9 @@ export class StaffComponent implements OnInit {
   showStudents: boolean = false;
 
   constructor(
-    private studentService: StudentService
+    private studentService: StudentService,
+    private appointmentService: AppointmentService,
+    private useRecordService: UseRecordService
   ) { }
 
   ngOnInit(): void {
@@ -50,6 +54,25 @@ export class StaffComponent implements OnInit {
       trainingLevel: 0,
     };
     this.studentService.addStudent(newStudent).subscribe(result => {console.log("Post service: ", result)});
+  }
+
+  postAppointmentTest() {
+    let newAppointment: iAppointment = {
+      organizer: "New Guy, New Data",
+      startTime: new Date("2000-09-29:18:38:00"),
+      endTime: new Date("2000-09-29:19:40:00")
+    };
+    this.appointmentService.addAppointment(newAppointment).subscribe(result => {console.log("Post service: ", result)});
+  }
+
+  postUseRecordTest() {
+    let newUseRecord: iUseRecord = {
+      dateOfSignIn: new Date("2000-09-29:18:00:00"),
+      dateOfSignOut: new Date("2000-09-29:19:40:00"),
+      studentStudentPk: 1,
+      machineMachinePk: 1
+    }
+    this.useRecordService.addUseRecord(newUseRecord).subscribe(result => {console.log("Post service: ", result)});
   }
 
 
