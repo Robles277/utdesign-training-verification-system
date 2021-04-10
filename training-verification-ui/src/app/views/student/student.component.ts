@@ -1,4 +1,8 @@
+import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { fromEventPattern } from 'rxjs';
+
 
 @Component({
   selector: 'app-student',
@@ -7,11 +11,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentComponent implements OnInit {
 
-  constructor() { }
+  
 
-  ngOnInit(): void {
+  loginForm = this.formBuilder.group({
+    netID: ''
+  });
+
+  constructor(private formBuilder: FormBuilder) { 
+    
   }
 
+  ngOnInit() : void {
+    // this.loginForm=this.formBuilder.group({
+    //   netID: ['', [Validators.required]]
+    // });
+  }
+
+  onSubmit() : void
+  {
+    alert(JSON.stringify(this.loginForm.value));
+    this.loginForm.reset();
+  }
+  
   showUnknown() {  
     alert("ERROR: No record of your netID exists in the current database. Please check your spelling or contact a staff member for assistance.");  
    }

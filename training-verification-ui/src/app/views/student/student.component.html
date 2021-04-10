@@ -1,10 +1,29 @@
 <!-- <h1 >Student View</h1> -->
 <h1><img src="assets/img/Student Login.png" width=20% height=20%></h1>
 <div id="buffer">
-    <form>
-        <label for="fname">NetID:</label><br>
-        <input type="text" id="fname" name="fname"><br>
+    
+        <!-- <label for="fname">NetID:</label><br>
+        <input type="text" id="fname" name="fname"><br> -->
+        
+        <!-- <div class="cart-item" *ngFor="let item of items">
+          <span>{{ item.name }} </span>
+          <span>{{ item.price | currency }}</span>
+        </div> -->
+        
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        
+          <div>
+            <label for="netID">
+              netID: 
+            </label>
+            <input id="netID" type="text" formControlName="netID">
+          </div>
+          
+          <button class="button" type="submit">Confirm</button>
+        </form>
 
+
+        <form>
         <br><p>Please choose the equipment you will be using from the list below: </p>
 
         <p>
