@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './components/header/header.component';
+import { NavComponent } from './components/navbar/navbar.component';
 import { StaffComponent } from './views/staff/staff.component';
 import { StudentComponent } from './views/student/student.component';
 import { ShowStudentsComponent } from './components/show-students/show-students.component';
@@ -13,6 +15,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
+    NavComponent,
     StaffComponent,
     StudentComponent,
     ShowStudentsComponent,

@@ -4,6 +4,11 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 @import '~@fortawesome/fontawesome-free/scss/regular.scss';
 @import '~@fortawesome/fontawesome-free/scss/solid.scss';
 
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('assets/font/BebasNeue-Regular.ttf') format('truetype');
+}
+
 /* You can add global styles to this file, and also import other style files */
 html, body {
   /* css variables */
