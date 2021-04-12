@@ -1,7 +1,7 @@
-import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { fromEventPattern } from 'rxjs';
+import { StudentService } from 'src/app/services/student.service';
+import { Helpers } from 'src/helpers';
 
 
 @Component({
@@ -9,34 +9,33 @@ import { fromEventPattern } from 'rxjs';
   templateUrl: './student.component.html',
   styleUrls: ['./student.component.css']
 })
-export class StudentComponent implements OnInit {
+export class StudentComponent {
+  loginForm: FormGroup;
+  machineForm: FormGroup;
 
-  
+  constructor(
+    private formBuilder: FormBuilder,
+    private studentService: StudentService,
+  ) {
+    this.loginForm = this.formBuilder.group({
+       loginNetId: [null, [Validators.required, Helpers.validateStringIsNotEmpty()]]
+    });
 
-  loginForm = this.formBuilder.group({
-    netID: ''
-  });
-
-  constructor(private formBuilder: FormBuilder) { 
-    
+    this.machineForm = this.formBuilder.group({
+      machineSelection: [null, [Validators.required]]
+    });
   }
 
-  ngOnInit() : void {
-    // this.loginForm=this.formBuilder.group({
-    //   netID: ['', [Validators.required]]
-    // });
-  }
-
-  onSubmit() : void
-  {
+  onSubmit(): void {
     alert(JSON.stringify(this.loginForm.value));
     this.loginForm.reset();
+    let currentStudent = this.studentService.getStudent(this.loginForm.get("loginNetId")!.value.trim());
   }
-  
-  showUnknown() {  
-    alert("ERROR: No record of your netID exists in the current database. Please check your spelling or contact a staff member for assistance.");  
-   }
-   showGood() {  
-    alert("You are allowed into the lab.");  
-   }
+
+  showUnknown() {
+    alert("ERROR: No record of your netID exists in the current database. Please check your spelling or contact a staff member for assistance.");
+  }
+  showGood() {
+    alert("You are allowed into the lab.");
+  }
 }

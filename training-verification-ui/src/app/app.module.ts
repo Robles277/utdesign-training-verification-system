@@ -10,7 +10,8 @@ import { StaffComponent } from './views/staff/staff.component';
 import { StudentComponent } from './views/student/student.component';
 import { ShowStudentsComponent } from './components/show-students/show-students.component';
 import { ScheduleNewStudentComponent } from './components/schedule-new-student/schedule-new-student.component';
-import { FormsModule, ReactiveFormsModule } from "@angular/forms"
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms"
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -28,7 +28,7 @@ export class StudentService {
        ));
      }
 
-  public getStudent(netIdStudent: number): Observable<iStudent> {
+  public getStudent(netIdStudent: string): Observable<iStudent> {
     let httpHeaders = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Cache-Control', 'no-cache');
