@@ -23,8 +23,12 @@
     "@angular/router": "~11.2.6",
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@js-joda/core": "^3.2.0",
+<<<<<<< HEAD
+    "file-saver": "^2.0.5",
+=======
     "@ng-bootstrap/ng-bootstrap": "^9.1.0",
     "bootstrap": "^4.5.0",
+>>>>>>> 4f6e718cbc772fc94aae50e27395685328fc2d1d
     "g": "^2.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
@@ -34,6 +38,7 @@
     "@angular-devkit/build-angular": "~0.1102.5",
     "@angular/cli": "^11.2.5",
     "@angular/compiler-cli": "~11.2.6",
+    "@types/file-saver": "^2.0.2",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
