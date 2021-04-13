@@ -1,28 +1,37 @@
-<!-- <h1 >Student View</h1> -->
 <h1><img src="assets/img/Student Login.png" width=20% height=20%></h1>
 <div id="buffer">
-    <form>
-        <label for="fname">NetID:</label><br>
-        <input type="text" id="fname" name="fname"><br>
+  <form [formGroup]="loginForm">
+    <div>
+      <label for="netId"> netID: </label>
+      <input id="netId" type="text" formControlName="loginNetId">
+    </div>
 
-        <br><p>Please choose the equipment you will be using from the list below: </p>
+    <button class="button" type="button"
+      #p="ngbPopover"
+      ngbPopover="Please enter a Net ID"
+      triggers="manual"
+      (click)="loginForm.invalid ? p.open() : onSubmit()">
+      Confirm</button>
+  </form>
 
-        <p>
-          <input type="checkbox" id="equipment1" name="equipment1" value="equipment1">
-          <label for="equipment1">Equipment 1</label><br>
-          <input type="checkbox" id="equipment2" name="equipment2" value="equipment2">
-          <label for="equipment2">Equipment 2</label><br>
-          <input type="checkbox" id="equipment3" name="equipment3" value="equipment3">
-          <label for="equipment3">Equipment 3</label><br>
-          <input type="checkbox" id="equipment4" name="equipment4" value="equipment4">
-          <label for="equipment4">Equipment 4</label><br>
-          <input type="checkbox" id="equipment5" name="equipment5" value="equipment5">
-          <label for="equipment5">Equipment 5</label><br>
-          <input type="checkbox" id="equipment6" name="equipment6" value="equipment6">
-          <label for="equipment6">Equipment 6</label><br>
-        </p>
-        
-      </form>
+  <form [formGroup]="machineForm">
+    <br><p>Please choose the equipment you will be using from the list below: </p>
+
+    <p>
+      <input type="checkbox" id="equipment1" name="equipment1" value="equipment1">
+      <label for="equipment1">Equipment 1</label><br>
+      <input type="checkbox" id="equipment2" name="equipment2" value="equipment2">
+      <label for="equipment2">Equipment 2</label><br>
+      <input type="checkbox" id="equipment3" name="equipment3" value="equipment3">
+      <label for="equipment3">Equipment 3</label><br>
+      <input type="checkbox" id="equipment4" name="equipment4" value="equipment4">
+      <label for="equipment4">Equipment 4</label><br>
+      <input type="checkbox" id="equipment5" name="equipment5" value="equipment5">
+      <label for="equipment5">Equipment 5</label><br>
+      <input type="checkbox" id="equipment6" name="equipment6" value="equipment6">
+      <label for="equipment6">Equipment 6</label><br>
+    </p>
+
+  </form>
     <button class="button button1" (click)='showUnknown()'>Confirm</button><br>
 </div>
-

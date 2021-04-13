@@ -1,0 +1,40 @@
+.navbar {
+    color: white;
+    height: 200px;
+    text-align: left;
+    font-size: 25px;
+    clear: both;
+    background-color: white; 
+}
+
+.nav-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: white;
+}
+
+.nav-item a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+  border:1px solid black;
+}
+
+.nav-item a:hover {
+  background-color: #555;
+  color: white;
+  text-decoration: none;
+  color:white;
+}
+
+.nav-item a:focus {
+  text-decoration: none;
+  color:orange;
+}
+.nav-item a:active {
+  text-decoration: none;
+  color:teal;
+}
