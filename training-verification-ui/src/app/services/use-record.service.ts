@@ -101,4 +101,13 @@ export class UseRecordService {
         }
       ));
   }
+  public getTextFile(url: string): Observable<string> {
+
+    // The Observable returned by get() is of type Observable<string>
+    // because a text response was specified.
+    // There's no need to pass a <string> type parameter to get().
+    return this.http.get(url, {responseType: 'text'}); // huh
+    
+  }
+  
 }

@@ -94,7 +94,7 @@ public class UseRecordController {
   
   
   @GetMapping(value = "/use-records/downloadCSV", produces = "text/csv")
-  public ResponseEntity downloadCSV() throws IOException { //works for empty db i think?
+  public ResponseEntity downloadCSV() throws IOException { 
 	  
 	  try {
 		  String csvFileName = "log.csv";
@@ -108,8 +108,6 @@ public class UseRecordController {
 		  writer.writeNext(header);
       
 		  List<UseRecord> records = useRecordService.getAllUseRecords();
-	  
-		  //MachineService  machineService = new MachineService();
 	  
 		  //contain machine pk : totalStudents
 		  HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
@@ -126,7 +124,7 @@ public class UseRecordController {
 	  
 		  for (Entry<Integer, Integer> mapElement : map.entrySet()) { 
 			  
-			  Machine machine = machineService.getMachine(mapElement.getKey()); //null? 
+			  Machine machine = machineService.getMachine(mapElement.getKey()); 
 		  
 			  String name = machine.getMachineName();
 			  String tag = machine.getMachineTag();
@@ -135,7 +133,6 @@ public class UseRecordController {
 			  String [] line = {name, tag, Integer.toString(totalStudents)};
 			  writer.writeNext(line);
 		  }
-	   
 		  writer.close();
 		  
 		  return ResponseEntity.ok()

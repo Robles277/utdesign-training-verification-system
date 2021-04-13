@@ -4,6 +4,7 @@ import { iAppointment, iStudent, iUseRecord } from '../../interfaces';
 import { ShowStudentsComponent } from 'src/app/components/show-students/show-students.component';
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { UseRecordService } from 'src/app/services/use-record.service';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-staff',
@@ -14,6 +15,7 @@ export class StaffComponent implements OnInit {
 
   students: iStudent[] = [];
   showStudents: boolean = false;
+  csv: any
 
   constructor(
     private studentService: StudentService,
@@ -39,9 +41,32 @@ export class StaffComponent implements OnInit {
   manageStudents() {
     alert("manageStudents()");
   }
-  viewLog() {
-    alert("viewLog()");
+
+  downloadLog()
+  {
+    //this.useRecordService.getTextFile('api/use-record/downloadCSV').subscribe(data => {
+    //  const newblob = new Blob([data], { type: 'text/csv' });
+    //  FileSaver.saveAs(newblob, 'log.csv');
+  //  }) ;
+  
+    this.useRecordService.getTextFile('api/use-records/downloadCSV')
+        .subscribe(data => this.csv = data); // what
+    
+
+
+      let newblob = new Blob([this.csv], { type: 'text/csv;charset=utf-8;' });
+      FileSaver.saveAs(newblob, 'log.csv');
+    
+      /*var url= window.URL.createObjectURL(newblob);
+      let link = document.createElement("a");
+      link.download = "log.csv";
+      link.href = window.URL.createObjectURL(this.csv); // me have no idea what i am doing
+      link.href = this.csv;
+      link.href = url;
+      link.click();*/
   }
+
+ 
   showAllStudents() {
     this.showStudents = true;
   }
