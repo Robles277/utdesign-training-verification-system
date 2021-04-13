@@ -18,7 +18,8 @@ export class StudentComponent {
     private studentService: StudentService,
   ) {
     this.loginForm = this.formBuilder.group({
-       loginNetId: [null, [Validators.required, Helpers.validateStringIsNotEmpty()]]
+       loginNetId: [null, [Validators.required, Helpers.validateStringIsNotEmpty()]],
+       teamName: [null]
     });
 
     this.machineForm = this.formBuilder.group({

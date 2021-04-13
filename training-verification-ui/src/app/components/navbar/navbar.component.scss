@@ -34,7 +34,20 @@
   text-decoration: none;
   color:orange;
 }
+
 .nav-item a:active {
+  text-decoration: none;
+  color:teal;
+}
+
+.nav-item a:focus {
+  background-color: #555;
+  text-decoration: none;
+  color:teal;
+}
+
+.nav-item a:browsing {
+  background-color: #555;
   text-decoration: none;
   color:teal;
 }
