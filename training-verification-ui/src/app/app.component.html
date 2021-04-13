@@ -1,9 +1,14 @@
-<div style="clear: both;"><a  style="float:left;" href="https://www.utdallas.edu/"><img src="assets/img/utdallaslogo.png"></a></div>
-<div class ="mainText"><img src="assets/img/Logo1.png" width=40% height=40% ></div>
-<div style="clear: both;" class = "navbar"><nav>
-    <ul>
-        <!-- <li><a href="/launch">Launch</a></li> -->
-        <li><a href="/staff" (click)='promptBox()'>Staff</a></li>
-        <li><a href="/student">Student</a></li></ul>
-</nav></div>
-<div style="clear: both;"><router-outlet></router-outlet></div>
+<div class="app-theme">
+  <div class="header">
+    <app-header></app-header>
+  </div>
+
+  <div class="app-area">
+    <div class="nav-area">
+      <app-nav></app-nav>
+    </div>
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
