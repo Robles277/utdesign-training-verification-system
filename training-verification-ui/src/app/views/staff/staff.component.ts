@@ -43,29 +43,13 @@ export class StaffComponent implements OnInit {
   }
 
   downloadLog()
-  {
-    //this.useRecordService.getTextFile('api/use-record/downloadCSV').subscribe(data => {
-    //  const newblob = new Blob([data], { type: 'text/csv' });
-    //  FileSaver.saveAs(newblob, 'log.csv');
-  //  }) ;
-  
+  {    
     this.useRecordService.getTextFile('api/use-records/downloadCSV')
-        .subscribe(data => this.csv = data); // what
-    
-
-
-      let newblob = new Blob([this.csv], { type: 'text/csv;charset=utf-8;' });
-      FileSaver.saveAs(newblob, 'log.csv');
-    
-      /*var url= window.URL.createObjectURL(newblob);
-      let link = document.createElement("a");
-      link.download = "log.csv";
-      link.href = window.URL.createObjectURL(this.csv); // me have no idea what i am doing
-      link.href = this.csv;
-      link.href = url;
-      link.click();*/
+      .subscribe(data => {
+        let newblob = new Blob([data], { type: 'text/csv;charset=utf-8;' });
+        FileSaver.saveAs(newblob, 'log.csv');
+      });  
   }
-
  
   showAllStudents() {
     this.showStudents = true;
