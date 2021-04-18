@@ -42,6 +42,9 @@ export class StaffComponent implements OnInit {
     alert("manageStudents()");
   }
 
+  uploadcsv() {
+    alert("uploadcsv()");
+  }
   downloadLog()
   {    
     this.useRecordService.getTextFile('api/use-records/downloadCSV')
