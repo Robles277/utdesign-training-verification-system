@@ -11,7 +11,8 @@ import { StudentComponent } from './views/student/student.component';
 import { ShowStudentsComponent } from './components/show-students/show-students.component';
 import { ScheduleNewStudentComponent } from './components/schedule-new-student/schedule-new-student.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginModalComponent } from './components/modals/login-modal/login-modal.component'
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
     StaffComponent,
     StudentComponent,
     ShowStudentsComponent,
-    ScheduleNewStudentComponent
+    ScheduleNewStudentComponent,
+    LoginModalComponent
   ],
   imports: [
     BrowserModule,

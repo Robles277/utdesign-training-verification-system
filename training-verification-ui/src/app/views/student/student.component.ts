@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { iStudent } from 'src/app/interfaces';
 import { StudentService } from 'src/app/services/student.service';
 import { Helpers } from 'src/helpers';
-
+import { LoginModalComponent } from 'src/app/components/modals/login-modal/login-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-student',
@@ -12,10 +14,12 @@ import { Helpers } from 'src/helpers';
 export class StudentComponent {
   loginForm: FormGroup;
   machineForm: FormGroup;
+  currentStudent!: iStudent;
 
   constructor(
     private formBuilder: FormBuilder,
     private studentService: StudentService,
+    private modalService: NgbModal
   ) {
     this.loginForm = this.formBuilder.group({
        loginNetId: [null, [Validators.required, Helpers.validateStringIsNotEmpty()]],
@@ -28,9 +32,29 @@ export class StudentComponent {
   }
 
   onSubmit(): void {
-    alert(JSON.stringify(this.loginForm.value));
+    //alert(JSON.stringify(this.loginForm.value));
+    Promise.all([
+      this.studentService.getStudent(this.loginForm.get("loginNetId")!.value.trim()).toPromise(),
+    ]).then((result) => {
+      this.currentStudent = result[0];
+    });
+    if(this.currentStudent === undefined) {
+      this.showUnknown();
+    }
+    else {
+      console.log(this.currentStudent);
+      this.openLoginModal(this.currentStudent);
+    }
     this.loginForm.reset();
-    let currentStudent = this.studentService.getStudent(this.loginForm.get("loginNetId")!.value.trim());
+  }
+
+  openLoginModal(student: iStudent) {
+    const modalRef = this.modalService.open(LoginModalComponent, {
+      backdrop: 'static',
+      keyboard: false,
+      size: 'lg'  
+    });
+    modalRef.componentInstance.student = student;
   }
 
   showUnknown() {
