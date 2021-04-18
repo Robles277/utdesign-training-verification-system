@@ -5,6 +5,7 @@ import { StudentService } from 'src/app/services/student.service';
 import { Helpers } from 'src/helpers';
 import { LoginModalComponent } from 'src/app/components/modals/login-modal/login-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-student',
@@ -33,18 +34,32 @@ export class StudentComponent {
 
   onSubmit(): void {
     //alert(JSON.stringify(this.loginForm.value));
-    Promise.all([
-      this.studentService.getStudent(this.loginForm.get("loginNetId")!.value.trim()).toPromise(),
-    ]).then((result) => {
-      this.currentStudent = result[0];
-    });
-    if(this.currentStudent === undefined) {
-      this.showUnknown();
-    }
-    else {
-      console.log(this.currentStudent);
-      this.openLoginModal(this.currentStudent);
-    }
+    this.studentService.getStudent(this.loginForm.get("loginNetId")!.value.trim()).pipe(
+      finalize(() => {
+        if(this.currentStudent === undefined || this.currentStudent === null) {
+          this.showUnknown();
+        }
+        else {
+          //console.log(this.currentStudent);
+          this.openLoginModal(this.currentStudent);
+        }
+      }))
+      .subscribe(
+      (result: iStudent) => {
+        this.currentStudent = result
+      },
+      error => {
+        // this is error case code (http error returned)
+      }
+    ); // end pipe
+    
+    // Promise.all([
+    //   this.studentService.getStudent(this.loginForm.get("loginNetId")!.value.trim()).toPromise(),
+    // ]).then((result) => {
+    //   this.currentStudent = result[0];
+    // });
+    
+    
     this.loginForm.reset();
   }
 
