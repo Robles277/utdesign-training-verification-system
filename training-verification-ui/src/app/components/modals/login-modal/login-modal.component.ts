@@ -1,7 +1,10 @@
 import { Component, Input } from "@angular/core";
+//import { MachineService } from '../../services/machine.service';
+//import { iMachine } from '../../interfaces';
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { iStudent } from "src/app/interfaces";
-import { StudentService } from "src/app/services/student.service"; 
+import { iMachine } from "src/app/interfaces";
+import { MachineService } from "src/app/services/machine.service";
 
 @Component({
   selector: 'app-login-modal',
@@ -10,12 +13,20 @@ import { StudentService } from "src/app/services/student.service";
 })
 export class LoginModalComponent {
   @Input() student!: iStudent;
+
+  machines: iMachine[] = [];
   
   constructor(
-    public activeModal: NgbActiveModal
+    public activeModal: NgbActiveModal,
+    private machineService: MachineService
   ) { }
 
   ngOnInit(): void {
+    Promise.all([
+      this.machineService.getAllMachines().toPromise(),
+    ]).then((results) => {
+      this.machines = results[0];
+    });
   }
 
   closeModal() {

@@ -5,10 +5,23 @@
     </button>
   </div>
   <div class="modal-body">
-    <p>My modal content</p>
+    <p>Please select all the machines that you will be using: </p>
+    <table style="width:100%">
+        <tr>
+          <th>Machine Name</th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let machine of machines; let i = index">
+            <td>{{machine.machineName}}</td>
+            <td><input type="checkbox" id="machine" name="machine" value="MachineSelect"></td>
+        </tr>
+      </table>
   </div>
   <div class="modal-footer">
     <button (click)="activeModal.dismiss('Close clicked')">
-      Close
+      Cancel
+    </button>
+    <button (click)="activeModal.dismiss('Close clicked')">
+      Submit
     </button>
   </div>
