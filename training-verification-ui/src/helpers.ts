@@ -10,4 +10,11 @@ export class Helpers {
     }
   }
 
+  public static individualKeyCopy<T extends object>(source: any, target: any): T {
+    for (var key of Object.keys(source)) {
+      target[key] = source[key];
+    }
+    return target;
+  }
+
 }

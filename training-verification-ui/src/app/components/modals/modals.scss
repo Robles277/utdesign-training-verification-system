@@ -18,10 +18,28 @@
   border-top: 0;
 }
 
+.form-control {
+  background-color: #2a2a2a;
+  border-color: #4d4d4d;
+  color: white;
+}
+
+.text-required {
+  color: #ef392f;
+}
+
 .btn {
   color: white;
 }
 
 .btn-outline-secondary {
   border-color: #4d4d4d;
+}
+
+.btn-outline-primary {
+  border-color: #383838;
+}
+
+.dropdown-item {
+  color: white;
 }

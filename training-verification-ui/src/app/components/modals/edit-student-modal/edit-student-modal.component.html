@@ -6,12 +6,69 @@
 </div>
 
 <div class="modal-body">
+  <form autocomplete="off" [formGroup]="formStudent">
+    <div class="form-row">
+      <div class="form-group col-6">
+        <label for="studentId">Student ID <span class="text-required">*</span></label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="studentId" formControlName="studentId" tabindex="0"/>
+        </div>
+        <span class="text-required" *ngIf="formStudent.get('studentId')!.touched && formStudent.get('studentId')!.errors">Enter a student ID</span>
+      </div>
+      <div class="form-group col-6">
+        <label for="studentNetId">Net ID <span class="text-required">*</span></label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="studentNetId" formControlName="studentNetId" tabindex="0"/>
+        </div>
+        <span class="text-required" *ngIf="formStudent.get('studentNetId')!.touched && formStudent.get('studentNetId')!.errors">Enter a net ID</span>
+      </div>
+    </div>
 
+    <div class="form-row">
+      <div class="form-group col-6">
+        <label for="studentFirstName">First Name <span class="text-required">*</span></label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="studentFirstName" formControlName="studentFirstName" tabindex="0"/>
+        </div>
+        <span class="text-required" *ngIf="formStudent.get('studentFirstName')!.touched && formStudent.get('studentFirstName')!.errors">Enter a first name</span>
+      </div>
+      <div class="form-group col-6">
+        <label for="studentLastName">Last Name <span class="text-required">*</span></label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="studentLastName" formControlName="studentLastName" tabindex="0"/>
+        </div>
+        <span class="text-required" *ngIf="formStudent.get('studentLastName')!.touched && formStudent.get('studentLastName')!.errors">Enter a last name</span>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-6">
+        <label for="studentIdentifier">Group/Identifier <span class="text-required">*</span></label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="studentIdentifier" formControlName="studentIdentifier" tabindex="0"/>
+        </div>
+      </div>
+      <div class="form-group col-6">
+        <label for="studentTraining">Training Level <span class="text-required">*</span></label>
+        <div class="training-level-selector" ngbDropdown>
+          <button class="btn btn-outline-primary w-50" id="select-training" ngbDropdownToggle>{{ selectedTrainingLevel }}</button>
+          <div ngbDropdownMenu class="dropdown-menu-training-level" aria-labelledby="select-training">
+            <button ngbDropdownItem class="dropdown-item" *ngFor="let trainingLevel of trainingLevels" (click)="selectTrainingLevel(trainingLevel)">{{trainingLevel}}</button>
+          </div>
+          <input type="hidden" class="form-control" id="studentTrainingLevel" formControlName="studentTraining"/>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
 
 <div class="modal-footer d-flex flex-row-reverse justify-content-between">
   <div class="d-block w-25">
-    <button type="button" class="btn w-100">
+    <button type="button" class="btn w-100"
+      #p="ngbPopover"
+      ngbPopover="Ensure all required fields are populated!"
+      triggers="manual"
+      (click)="formStudent.invalid ? p.open() : onClickSubmitButton($event.currentTarget)">
       Submit
     </button>
   </div>
