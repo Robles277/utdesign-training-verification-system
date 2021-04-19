@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { finalize } from "rxjs/operators";
+import { trainingLevelStrings } from "src/app/enums";
 import { iStudent } from "src/app/interfaces";
 import { StudentService } from "src/app/services/student.service";
 import { Helpers } from "src/helpers";
@@ -15,12 +16,8 @@ import { Helpers } from "src/helpers";
 export class EditStudentModalComponent implements OnInit {
   @Input() student!: iStudent;
   public formStudent!: FormGroup;
-  public trainingLevels: string[] = [
-    "Untrained",
-    "In Training",
-    "Trained"
-  ]
   public selectedTrainingLevel: string = "";
+  public trainingLevelStringsExtra = trainingLevelStrings;
 
   constructor(
     private studentService: StudentService,
@@ -31,7 +28,7 @@ export class EditStudentModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.selectedTrainingLevel = this.trainingLevels[this.student.trainingLevel];
+    this.selectedTrainingLevel = trainingLevelStrings[this.student.trainingLevel];
 
     this.formStudent = this.formBuilder.group({
       studentId: [this.student.studentId, [Validators.required, Helpers.validateStringIsNotEmpty()]],
@@ -79,7 +76,7 @@ export class EditStudentModalComponent implements OnInit {
       firstName: this.formStudent.get("studentFirstName")!.value.trim(),
       lastName: this.formStudent.get("studentLastName")!.value.trim(),
       identifier: this.formStudent.get("studentIdentifier")!.value,
-      trainingLevel: this.trainingLevels.findIndex(tl => tl === this.selectedTrainingLevel)
+      trainingLevel: trainingLevelStrings.findIndex(tl => tl === this.selectedTrainingLevel)
     };
     return student;
   }

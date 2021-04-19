@@ -6,12 +6,44 @@
 </div>
 
 <div class="modal-body">
+  <div class="form-row">
+    <div class="form-group col-6">
+      <label class="no-input-label" for="studentId">Student ID</label>
+      <div class="input-group">{{ student.studentId }}</div>
+    </div>
+    <div class="form-group col-6">
+      <label class="no-input-label" for="studentNetId">Net ID</label>
+      <div class="input-group">{{ student.netId }}</div>
+    </div>
+  </div>
 
+  <div class="form-row">
+    <div class="form-group col-6">
+      <label class="no-input-label" for="studentFirstName">First Name</label>
+      <div class="input-group">{{ student.firstName }}</div>
+    </div>
+    <div class="form-group col-6">
+      <label class="no-input-label" for="studentLastName">Last Name</label>
+      <div class="input-group">{{ student.lastName }}</div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-6">
+      <label class="no-input-label" for="studentIdentifier">Group/Identifier</label>
+      <div class="input-group">{{ student.identifier }}</div>
+      <div class="input-group" *ngIf="!student.identifier"><em>None</em></div>
+    </div>
+    <div class="form-group col-6">
+      <label class="no-input-label" for="studentTraining">Training Level</label>
+      <div class="input-group">{{ getTrainingLevelName() }}</div>
+    </div>
+  </div>
 </div>
 
 <div class="modal-footer d-flex flex-row-reverse justify-content-between">
   <div class="d-block w-25">
-    <button type="button" class="btn w-100">
+    <button type="button" class="btn w-100" (click)="onClickSubmitButton($event.currentTarget)">
       Submit
     </button>
   </div>

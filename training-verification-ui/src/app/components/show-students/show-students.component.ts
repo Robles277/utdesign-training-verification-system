@@ -5,6 +5,7 @@ import { iStudent } from '../../interfaces';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditStudentModalComponent } from '../modals/edit-student-modal/edit-student-modal.component';
 import { DeleteStudentModalComponent } from '../modals/delete-student-modal/delete-student-modal.component';
+import { trainingLevelStrings } from 'src/app/enums';
 
 @Component({
   selector: 'app-show-students',
@@ -51,6 +52,10 @@ export class ShowStudentsComponent implements OnInit {
       // you can return a value from a modal (when you're within a modal and not here) via
       // this.activeModal.close(WHATVER YOU WANT TO RETURN)
     });
+  }
+
+  trainingLevelToString(level: number) {
+    return trainingLevelStrings[level];
   }
 
 }

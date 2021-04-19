@@ -1,5 +1,3 @@
-import { TrainingLevel } from './enums';
-import { Duration } from '@js-joda/core'; // https://js-joda.github.io/js-joda/manual/Duration.html
 
 export interface iStudent {
   studentPk?: number;

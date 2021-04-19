@@ -53,7 +53,7 @@
         <div class="training-level-selector" ngbDropdown>
           <button class="btn btn-outline-primary w-50" id="select-training" ngbDropdownToggle>{{ selectedTrainingLevel }}</button>
           <div ngbDropdownMenu class="dropdown-menu-training-level" aria-labelledby="select-training">
-            <button ngbDropdownItem class="dropdown-item" *ngFor="let trainingLevel of trainingLevels" (click)="selectTrainingLevel(trainingLevel)">{{trainingLevel}}</button>
+            <button ngbDropdownItem class="dropdown-item" *ngFor="let trainingLevel of trainingLevelStringsExtra" (click)="selectTrainingLevel(trainingLevel)">{{trainingLevel}}</button>
           </div>
           <input type="hidden" class="form-control" id="studentTrainingLevel" formControlName="studentTraining"/>
         </div>

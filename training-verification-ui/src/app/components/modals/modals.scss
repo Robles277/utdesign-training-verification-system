@@ -24,6 +24,11 @@
   color: white;
 }
 
+.no-input-label {
+  font-weight: bold;
+  font-size: 110%;
+}
+
 .text-required {
   color: #ef392f;
 }
@@ -38,8 +43,4 @@
 
 .btn-outline-primary {
   border-color: #383838;
-}
-
-.dropdown-item {
-  color: white;
 }
