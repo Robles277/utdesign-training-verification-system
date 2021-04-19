@@ -12,8 +12,13 @@
           <th></th>
         </tr>
         <tr *ngFor="let machine of machines; let i = index">
-            <td>{{machine.machineName}}</td>
-            <td><input type="checkbox" id="machine" name="machine" value="MachineSelect"></td>
+            <td class="align-left">{{machine.machineName}}</td>
+            <td>
+              <label class="container">
+                <input type="checkbox">
+                <span class="checkmark"></span>
+              </label>
+            </td>
         </tr>
       </table>
   </div>
