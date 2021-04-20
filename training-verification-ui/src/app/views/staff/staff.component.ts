@@ -1,3 +1,4 @@
+import { NumberFormatStyle } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class StaffComponent implements OnInit {
 
   showStudents: boolean = false;
+  showMachines: boolean = false;
+  showAppointments: boolean = false;
 
   constructor(
 
@@ -31,7 +34,19 @@ export class StaffComponent implements OnInit {
     alert("viewLog()");
   }
   showAllStudents() {
+    this.showMachines = false;
+    this.showAppointments = false;
     this.showStudents = true;
+  }
+  showAllAppointments() {
+    this.showStudents = false;
+    this.showMachines = false;
+    this.showAppointments = true;
+  }
+  showAllMachines() {
+    this.showStudents = false;
+    this.showAppointments = false;
+    this.showMachines = true;
   }
   postStudentTest() {
 
