@@ -1,5 +1,5 @@
-export enum TrainingLevel {
-  Untrained = 1,
-  Training = 2,
-  Trained = 3
-}
+export const trainingLevelStrings: string[] = [
+  "Untrained",
+  "In Training",
+  "Trained"
+];

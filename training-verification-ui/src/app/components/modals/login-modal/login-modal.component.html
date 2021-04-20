@@ -1,0 +1,32 @@
+<div class="modal-header">
+    <h4 class="modal-title">Hello, {{student.firstName}} </h4>
+    <button type="button" class="close" aria-label="Close"
+     (click)="activeModal.dismiss('Cross click')">
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Please select all the machines that you will be using: </p>
+    <table style="width:100%">
+        <tr>
+          <th>Machine Name</th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let machine of machines; let i = index">
+            <td class="align-left">{{machine.machineName}}</td>
+            <td>
+              <label class="container">
+                <input type="checkbox">
+                <span class="checkmark"></span>
+              </label>
+            </td>
+        </tr>
+      </table>
+  </div>
+  <div class="modal-footer">
+    <button (click)="activeModal.dismiss('Close clicked')">
+      Cancel
+    </button>
+    <button (click)="closeModalSubmit()">
+      Submit
+    </button>
+  </div>

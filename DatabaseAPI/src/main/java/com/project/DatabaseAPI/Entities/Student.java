@@ -23,7 +23,8 @@ public class Student {
 	private String last_name;
 
 	private String net_id;
-
+	
+	private String identifier;
 
 	private String student_id;
 
@@ -41,12 +42,13 @@ public class Student {
 	public Student() {
 	}
 
-	public Student(String studentId, String netId, String firstName, String lastName, short trainingLevel) {
+	public Student(String studentId, String netId, String firstName, String lastName, short trainingLevel, String identifier) {
 		this.student_id = studentId;
 		this.net_id = netId;
 		this.first_name = firstName;
 		this.last_name = lastName;
 		this.training_level = trainingLevel;
+		this.identifier = identifier;
 	}
 
 	@Id
@@ -68,4 +70,7 @@ public class Student {
 
 	public short getTrainingLevel() { return training_level; }
 	public void setTrainingLevel(short trainingLevel) { this.training_level = trainingLevel; }
+	
+	public String getIdentifier() { return identifier; }
+    public void setIdentifier(String identifier) { this.identifier = identifier; }
 }
