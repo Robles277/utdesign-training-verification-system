@@ -32,4 +32,8 @@ export class LoginModalComponent {
   closeModal() {
     this.activeModal.close('Modal Closed');
   }
+
+  closeModalSubmit() {
+    this.activeModal.close('Modal Closed');
+  }
 }
