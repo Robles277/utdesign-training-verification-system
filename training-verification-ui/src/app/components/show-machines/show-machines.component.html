@@ -1,0 +1,12 @@
+<h1 align="center">All Machines</h1>
+<p align="center">{{currentDate | date: 'longDate'}}</p>
+<table style="width:100%">
+    <tr>
+      <th>Machine Tag</th>
+      <th>Machine Name</th>
+    </tr>
+   <tr *ngFor="let machine of machines; let i = index">
+      <td>{{machine.machineTag}}</td>
+      <td>{{machine.machineName}}</td>
+   </tr>
+  </table>

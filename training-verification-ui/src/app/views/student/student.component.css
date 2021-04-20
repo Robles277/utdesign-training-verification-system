@@ -1,0 +1,8 @@
+.required-field::after {
+    content: "*";
+    color: red;
+}
+
+.clear { 
+	clear: both; /* you can either use left or right */ 
+} 

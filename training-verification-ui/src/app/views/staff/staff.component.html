@@ -1,12 +1,11 @@
-<!-- <h1 >Staff View</h1> -->
 <h1><img src="assets/img/Staff Login.png" width=10% height=10%></h1>
 <div id="buffer">
     <button class="button button1" (click)='scheduleNew()'>Schedule New Student</button><br>
-    <button class="button button1" (click)='manageSchedule()'>Manage Schedule</button><br>
-    <button class="button button1" (click)='showAllStudents()'>Show All Students</button><br>
-    <button class="button button1" (click)='postStudentTest()'>Manage Students</button><br>
-    <button class="button button1" (click)='postAppointmentTest()'>Test Service Call (Post Appointment)</button><br>
-    <button class="button button1" (click)='postUseRecordTest()'>Test Service Call (Post Use Record)</button><br>
-    <button class="button button1" (click)='downloadLog()'>Download Log</button>
+    <button class="button button1" (click)='showAllStudents()'>Manage Students</button><br>
+    <button class="button button1" (click)='showAllAppointments()'>Manage Appointments</button><br>
+    <button class="button button1" (click)='showAllMachines()'>Manage Machines</button><br>
+    <button class="button button1" (click)='viewLog()'>View Log</button>
       <app-show-students *ngIf="showStudents"></app-show-students>
+      <app-show-machines *ngIf="showMachines"></app-show-machines>
+      <app-show-appointments *ngIf="showAppointments"></app-show-appointments>
 </div>

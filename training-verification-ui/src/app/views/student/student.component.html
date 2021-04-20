@@ -1,11 +1,19 @@
 <h1><img src="assets/img/Student Login.png" width=20% height=20%></h1>
 <div id="buffer">
   <form [formGroup]="loginForm">
-    <div>
-      <label for="netId"> netID: </label>
-      <input id="netId" type="text" formControlName="loginNetId">
+    <div style="margin-bottom: 1pc;">
+      <label for="netId" class="required-field" > netID: </label>
+      <div style="margin-bottom:1pc;">
+        <input id="netId" type="text" formControlName="loginNetId">
+      </div>
     </div>
-
+    
+    <div style="margin-bottom: 1pc;">
+      <div style="margin-top: 1pc;">
+        <label for="netId"> Team Name: </label>
+      </div>
+      <input id="teamName" type="text" formControlName="teamName">
+    </div>
     <button class="button" type="button"
       #p="ngbPopover"
       ngbPopover="Please enter a Net ID"
@@ -14,8 +22,12 @@
       Confirm</button>
   </form>
 
+  <div style="margin-top: 2pc;">
+    <p><span style="color: red">*</span> - Required Field</p>
+  </div>
+
   <form [formGroup]="machineForm">
-    <br><p>Please choose the equipment you will be using from the list below: </p>
+    <!-- <p style="margin-top: 1pc;">Please choose the equipment you will be using from the list below: </p>
 
     <p>
       <input type="checkbox" id="equipment1" name="equipment1" value="equipment1">
@@ -30,8 +42,8 @@
       <label for="equipment5">Equipment 5</label><br>
       <input type="checkbox" id="equipment6" name="equipment6" value="equipment6">
       <label for="equipment6">Equipment 6</label><br>
-    </p>
+    </p> -->
 
   </form>
-    <button class="button button1" (click)='showUnknown()'>Confirm</button><br>
+    <!-- <button class="button button1" (click)='showUnknown()'>Confirm</button><br> -->
 </div>

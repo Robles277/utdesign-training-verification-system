@@ -1,0 +1,76 @@
+@import '../modals.scss';
+
+.modal{
+    display: block !important; /* I added this to see the modal, you don't need this */
+}
+
+/* Important part */
+.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body{
+    height: 60vh;
+    overflow-y: auto;
+}
+
+td {
+    text-align: center;
+    /* center checkbox horizontally */
+    vertical-align: middle;
+    /* center checkbox vertically */
+  }
+  td.align-left {
+    text-align: left;
+    /* center checkbox horizontally */
+    vertical-align: middle;
+    /* center checkbox vertically */
+  }
+  
+  table {
+    border: 1px solid;
+    width: 200px;
+  }
+  
+  tr {
+    height: 80px;
+  }
+
+  input[type=checkbox]
+  {
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(1.5); /* IE */
+    -moz-transform: scale(1.5); /* FF */
+    -webkit-transform: scale(1.5); /* Safari and Chrome */
+    -o-transform: scale(1.5); /* Opera */
+    transform: scale(1.5);
+    padding: 10px;
+  }
+  
+  /* Might want to wrap a span around your checkbox text */
+  .checkboxtext
+  {
+    /* Checkbox text */
+    font-size: 110%;
+    display: inline;
+  }
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #4b4b4b;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(255, 255, 255);
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(255, 255, 255);
+  }
