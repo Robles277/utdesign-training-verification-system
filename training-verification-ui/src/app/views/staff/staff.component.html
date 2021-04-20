@@ -8,6 +8,13 @@
     <button class="button button1" (click)='postAppointmentTest()'>Test Service Call (Post Appointment)</button><br>
     <button class="button button1" (click)='postUseRecordTest()'>Test Service Call (Post Use Record)</button><br>
     <button class="button button1" (click)='downloadLog()'>Download Log</button><br>
-    <button class="button button1" (click)='uploadcsv()'>Upload</button>
-      <app-show-students *ngIf="showStudents"></app-show-students>
+    <!-- <button class="button button1" (click)='uploadcsv()'>Upload csv</button><br> -->
+
+    <p>Click on the "Choose File" button to upload a file:</p>
+    <form ngNoForm name="myForm" enctype="multipart/form-data" method="post" action="http://localhost:8080/api/students/upload">
+      <input type="file" accept=".csv" id="file" name="file">
+      <input type="submit">
+    </form>
+
+    <app-show-students *ngIf="showStudents"></app-show-students>
 </div>

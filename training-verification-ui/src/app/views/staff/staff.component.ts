@@ -5,6 +5,7 @@ import { ShowStudentsComponent } from 'src/app/components/show-students/show-stu
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { UseRecordService } from 'src/app/services/use-record.service';
 import * as FileSaver from 'file-saver';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-staff',
@@ -42,9 +43,15 @@ export class StaffComponent implements OnInit {
     alert("manageStudents()");
   }
 
-  uploadcsv() {
-    alert("uploadcsv()");
+  uploadcsv(f: NgForm) {
+    // e.preventDefault()
+
+    console.log(f.value);
+
   }
+
+
+
   downloadLog()
   {    
     this.useRecordService.getTextFile('api/use-records/downloadCSV')
