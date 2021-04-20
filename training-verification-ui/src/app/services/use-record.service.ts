@@ -102,12 +102,11 @@ export class UseRecordService {
       ));
   }
   public getTextFile(url: string): Observable<string> {
+    let httpHeaders = new HttpHeaders()
+      .set('Content-Type', 'text/csv')
+      .set('Cache-Control', 'no-cache');
 
-    // The Observable returned by get() is of type Observable<string>
-    // because a text response was specified.
-    // There's no need to pass a <string> type parameter to get().
-    return this.http.get(url, {responseType: 'text'}); // huh
-    
+    return this.http.get(url, {headers: httpHeaders, responseType: 'text', observe: 'body'});
   }
   
 }

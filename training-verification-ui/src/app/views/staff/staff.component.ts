@@ -6,6 +6,7 @@ import { ShowStudentsComponent } from 'src/app/components/show-students/show-stu
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { UseRecordService } from 'src/app/services/use-record.service';
 import * as FileSaver from 'file-saver';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-staff',
@@ -38,30 +39,23 @@ export class StaffComponent implements OnInit {
     alert("manageStudents()");
   }
 
-  downloadLog()
-  {
-    //this.useRecordService.getTextFile('api/use-record/downloadCSV').subscribe(data => {
-    //  const newblob = new Blob([data], { type: 'text/csv' });
-    //  FileSaver.saveAs(newblob, 'log.csv');
-  //  }) ;
-  
-    this.useRecordService.getTextFile('api/use-records/downloadCSV')
-        .subscribe(data => this.csv = data); // what
-    
+  uploadcsv(f: NgForm) {
+    // e.preventDefault()
 
+    console.log(f.value);
 
-      let newblob = new Blob([this.csv], { type: 'text/csv;charset=utf-8;' });
-      FileSaver.saveAs(newblob, 'log.csv');
-    
-      /*var url= window.URL.createObjectURL(newblob);
-      let link = document.createElement("a");
-      link.download = "log.csv";
-      link.href = window.URL.createObjectURL(this.csv); // me have no idea what i am doing
-      link.href = this.csv;
-      link.href = url;
-      link.click();*/
   }
 
+
+
+  downloadLog()
+  {    
+    this.useRecordService.getTextFile('api/use-records/downloadCSV')
+      .subscribe(data => {
+        let newblob = new Blob([data], { type: 'text/csv;charset=utf-8;' });
+        FileSaver.saveAs(newblob, 'log.csv');
+      });  
+  }
  
   showAllStudents() {
     this.showMachines = false;
