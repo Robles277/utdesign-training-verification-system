@@ -8,6 +8,7 @@ import { UseRecordService } from 'src/app/services/use-record.service';
 import * as FileSaver from 'file-saver';
 import { NgForm } from '@angular/forms';
 
+
 @Component({
   selector: 'app-staff',
   templateUrl: './staff.component.html',
@@ -20,7 +21,7 @@ export class StaffComponent implements OnInit {
   showAppointments: boolean = false;
   csv: any
 
-  constructor(
+  constructor(private useRecordService: UseRecordService,
 
   ) { }
 

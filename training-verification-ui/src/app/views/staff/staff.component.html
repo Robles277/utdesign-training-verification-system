@@ -1,11 +1,9 @@
 <h1><img src="assets/img/Staff Login.png" width=10% height=10%></h1>
 <div id="buffer">
     <button class="button button1" (click)='scheduleNew()'>Schedule New Student</button><br>
-    <button class="button button1" (click)='manageSchedule()'>Manage Schedule</button><br>
     <button class="button button1" (click)='showAllStudents()'>Manage Students</button><br>
     <button class="button button1" (click)='showAllAppointments()'>Manage Appointments</button><br>
     <button class="button button1" (click)='showAllMachines()'>Manage Machines</button><br>
-    <button class="button button1" (click)='viewLog()'>View Log</button>
     <button class="button button1" (click)='downloadLog()'>Download Log</button><br>
     <p>Click on the "Choose File" button to upload a file:</p>
     <form ngNoForm name="myForm" enctype="multipart/form-data" method="post" action="http://localhost:8080/api/students/upload">
