@@ -21,7 +21,7 @@ export class StaffComponent implements OnInit {
   showAppointments: boolean = false;
   csv: any
 
-  constructor(private useRecordService: UseRecordService,
+  constructor(private useRecordService: UseRecordService, private studentService: StudentService
 
   ) { }
 
@@ -40,13 +40,33 @@ export class StaffComponent implements OnInit {
     alert("manageStudents()");
   }
 
-  uploadcsv(f: NgForm) {
-    // e.preventDefault()
-
-    console.log(f.value);
-
+  showForm(id:string) {
+    var x = document.getElementById(id);
+    if (x!.style.display == "none") 
+      x!.style.display = "block";
+    else 
+      x!.style.display = "none";
   }
 
+  uploadStudentcsv(f: NgForm) {
+    console.log(f.value);
+    let file = (document.getElementById("file") as HTMLInputElement).files?.[0]
+    let formData = new FormData();
+    formData.append("file", file as Blob, "")
+    this.studentService.uploadStudentCSV(formData).subscribe(data => {
+      alert("File uploaded.")
+    })
+  }
+
+  uploadMachinecsv(f: NgForm) {
+    console.log(f.value);
+    let file = (document.getElementById("file1") as HTMLInputElement).files?.[0]
+    let formData = new FormData();
+    formData.append("file", file as Blob, "")
+    this.studentService.uploadMachineCSV(formData).subscribe(data => {
+      alert("File uploaded.")
+    })
+  }
 
 
   downloadLog()

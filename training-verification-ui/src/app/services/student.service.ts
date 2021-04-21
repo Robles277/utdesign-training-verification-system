@@ -115,7 +115,11 @@ export class StudentService {
         }
       ));
   }
-  uploadCSV(file: any): Observable<any> {
-    return this.http.put('api/students/upload', file);
+  uploadStudentCSV(file: FormData): Observable<any> {
+    return this.http.post('api/students/uploadStudentCSV', file);
+  }
+
+  uploadMachineCSV(file: FormData): Observable<any> {
+    return this.http.post('api/students/uploadMachineCSV', file);
   }
 }

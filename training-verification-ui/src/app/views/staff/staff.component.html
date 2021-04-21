@@ -5,11 +5,21 @@
     <button class="button button1" (click)='showAllAppointments()'>Manage Appointments</button><br>
     <button class="button button1" (click)='showAllMachines()'>Manage Machines</button><br>
     <button class="button button1" (click)='downloadLog()'>Download Log</button><br>
-    <p>Click on the "Choose File" button to upload a file:</p>
-    <form ngNoForm name="myForm" enctype="multipart/form-data" method="post" action="http://localhost:8080/api/students/upload">
-      <input type="file" accept=".csv" id="file" name="file">
+
+    <form #f="ngForm" id="myForm" style="display: none" enctype="multipart/form-data" method="post" (ngSubmit)="uploadStudentcsv(f)">
+      <p>Click on the "Choose File" button to upload a student file: </p>
+      <input type="file" accept=".csv" id="file" name="file" ngModel >
       <input type="submit">
     </form>
+    <button class="button button1" (click)="showForm('myForm')">Upload Students CSV</button><br>
+
+    <form #f="ngForm" id="myForm1" style="display: none" enctype="multipart/form-data" method="post" (ngSubmit)="uploadMachinecsv(f)">
+      <p>Click on the "Choose File" button to upload a machine file: </p>
+      <input type="file" accept=".csv" id="file1" name="file1" ngModel>
+      <input type="submit">
+    </form>
+    <button class="button button1" (click)="showForm('myForm1')">Upload Machines CSV</button>
+
     <app-show-students *ngIf="showStudents"></app-show-students>
     <app-show-machines *ngIf="showMachines"></app-show-machines>
     <app-show-appointments *ngIf="showAppointments"></app-show-appointments>

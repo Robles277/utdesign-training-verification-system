@@ -88,7 +88,7 @@ public class StudentController {
       studentService.deleteStudent(id);
   }
   
-  @PostMapping("/students/upload")
+  @PostMapping("/students/uploadStudentCSV")
   public ResponseEntity<?> uploadCSV(@RequestParam("file") MultipartFile file) {
 	  
 	  try {
@@ -103,11 +103,13 @@ public class StudentController {
 					  csvRecord.get("NetId"),
 					  csvRecord.get("First Name"),
 					  csvRecord.get("Last Name"),
-					  Short.parseShort(csvRecord.get("Training Level")));
+					  Short.parseShort(csvRecord.get("Training Level")),
+					  csvRecord.get("Identifier"));
 			  
 			  studentService.addStudent(student);
 		  }
 		  
+		  csvParser.close();
 		  return new ResponseEntity<>(HttpStatus.OK);
 		  }
 	  catch (Exception e) {

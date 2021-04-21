@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Time;
+import java.text.DecimalFormat;
 
 import com.opencsv.CSVWriter;
 
@@ -94,7 +95,7 @@ public class UseRecordController {
   
   
   @GetMapping(value = "/use-records/downloadCSV", produces = "text/csv")
-  public ResponseEntity downloadCSV() throws IOException { 
+  public ResponseEntity<?> downloadCSV() throws IOException { 
 	  
 	  try {
 		  String csvFileName = "log.csv";
@@ -103,7 +104,7 @@ public class UseRecordController {
 		  CSVWriter writer = new CSVWriter(new FileWriter(file));
 	  
 		  //Writing data to a csv file
-		  String [] header = {"Machine Name", "Machine Tag", "Total Students Used"};
+		  String [] header = {"Machine Name", "Machine Tag", "Total Students Used", "Total Hours Used"};
      
 		  writer.writeNext(header);
       
@@ -111,17 +112,24 @@ public class UseRecordController {
 	  
 		  //contain machine pk : totalStudents
 		  HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-	  
+		  HashMap<Integer, Integer> timeMap = new HashMap<Integer, Integer>(); //pk : totalTime
+		  
 		  for (UseRecord r : records) {
 		  
 			  int machine_pk = r.getMachineMachinePk();
 		 
-			  if(map.get(machine_pk) != null) //machine pk already in the map
+			  if(map.get(machine_pk) != null) { //machine pk already in the map
 				  map.put(r.getMachineMachinePk(), map.get(machine_pk) + 1);
-			  else 
+			  	  timeMap.put(r.getMachineMachinePk(), timeMap.get(machine_pk) + r.getSessionLength());
+			  }
+			  else {
 				  map.put(r.getMachineMachinePk(), 1);
+				  timeMap.put(r.getMachineMachinePk(), r.getSessionLength());
+			  }
 		  } 
 	  
+		  DecimalFormat df = new DecimalFormat("0.00");
+		  
 		  for (Entry<Integer, Integer> mapElement : map.entrySet()) { 
 			  
 			  Machine machine = machineService.getMachine(mapElement.getKey()); 
@@ -129,8 +137,9 @@ public class UseRecordController {
 			  String name = machine.getMachineName();
 			  String tag = machine.getMachineTag();
 			  Integer totalStudents = mapElement.getValue();
-		  
-			  String [] line = {name, tag, Integer.toString(totalStudents)};
+			  Double totalHours = timeMap.get(mapElement.getKey()) / 60.0; 
+			  
+			  String [] line = {name, tag, Integer.toString(totalStudents), df.format(totalHours)};
 			  writer.writeNext(line);
 		  }
 		  writer.close();
