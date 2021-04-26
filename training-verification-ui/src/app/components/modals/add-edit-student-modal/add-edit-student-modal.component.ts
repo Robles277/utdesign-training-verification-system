@@ -8,7 +8,7 @@ import { StudentService } from "src/app/services/student.service";
 import { Helpers } from "src/helpers";
 
 @Component({
-  selector: 'app-edit-student-modal',
+  selector: 'app-add-edit-student-modal',
   templateUrl: './add-edit-student-modal.component.html',
   styleUrls: ['./add-edit-student-modal.component.scss']
 })
@@ -108,7 +108,7 @@ export class AddEditStudentModalComponent implements OnInit {
       );
   }
 
-  buildStudent() {
+  buildStudent(): iStudent {
     let student: iStudent = {
       studentId: this.formStudent.get("studentId")!.value.trim(),
       netId: this.formStudent.get("studentNetId")!.value.trim(),

@@ -17,6 +17,8 @@ import { AddEditStudentModalComponent } from './components/modals/add-edit-stude
 import { DeleteStudentModalComponent } from './components/modals/delete-student-modal/delete-student-modal.component';
 import { ShowAppointmentsComponent } from './components/show-appointments/show-appointments.component';
 import { ShowMachinesComponent } from './components/show-machines/show-machines.component';
+import { AddEditMachineModalComponent } from './components/modals/add-edit-machine-modal/add-edit-machine-modal.component';
+import { DeleteMachineModalComponent } from './components/modals/delete-machine-modal/delete-machine-modal.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { ShowMachinesComponent } from './components/show-machines/show-machines.
     LoginModalComponent,
     AddEditStudentModalComponent,
     DeleteStudentModalComponent,
+    AddEditMachineModalComponent,
+    DeleteMachineModalComponent,
     ShowAppointmentsComponent,
     ShowMachinesComponent,
   ],
