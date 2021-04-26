@@ -9,12 +9,13 @@ import { Helpers } from "src/helpers";
 
 @Component({
   selector: 'app-edit-student-modal',
-  templateUrl: './edit-student-modal.component.html',
-  styleUrls: ['./edit-student-modal.component.scss']
+  templateUrl: './add-edit-student-modal.component.html',
+  styleUrls: ['./add-edit-student-modal.component.scss']
 })
 
-export class EditStudentModalComponent implements OnInit {
+export class AddEditStudentModalComponent implements OnInit {
   @Input() student!: iStudent;
+  @Input() editMode!: boolean;
   public formStudent!: FormGroup;
   public selectedTrainingLevel: string = "";
   public trainingLevelStringsExtra = trainingLevelStrings;
@@ -28,6 +29,16 @@ export class EditStudentModalComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (!this.editMode) {
+      this.student = {
+        studentId: "",
+        netId: "",
+        firstName: "",
+        lastName: "",
+        trainingLevel: 0,
+        identifier: ""
+      }
+    }
     this.selectedTrainingLevel = trainingLevelStrings[this.student.trainingLevel];
 
     this.formStudent = this.formBuilder.group({
@@ -45,6 +56,11 @@ export class EditStudentModalComponent implements OnInit {
   }
 
   onClickSubmitButton(target: EventTarget | null) {
+    this.editMode ? this.updateStudent(target)
+      : this.createStudent(target);
+  }
+
+  updateStudent(target: EventTarget | null) {
     let updatedStudent = this.buildStudent();
     updatedStudent.studentPk = this.student.studentPk;
 
@@ -65,6 +81,29 @@ export class EditStudentModalComponent implements OnInit {
         },
         error => {
           console.error("Unable to update student!: ", error);
+        }
+      );
+  }
+
+  createStudent(target: EventTarget | null) {
+    let newStudent = this.buildStudent();
+
+    let button = <HTMLButtonElement>target;
+    button.disabled = true;
+    this.studentService.addStudent(newStudent).pipe(
+      finalize(() => {
+        button.disabled = false;
+      }))
+      .subscribe(
+        (result: boolean) => {
+          if (result) {
+            // display a success message somewhere, can we get like a toast module
+            this.activeModal.close({object: newStudent});
+            return;
+          }
+        },
+        error => {
+          console.error("Unable to create student!: ", error);
         }
       );
   }

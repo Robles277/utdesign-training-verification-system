@@ -1,5 +1,6 @@
 <div class="modal-header">
-  <h4 class="modal-title">Edit {{student.firstName}} {{student.lastName}}</h4>
+  <h4 class="modal-title" *ngIf="editMode">Edit {{student.firstName}} {{student.lastName}}</h4>
+  <h4 class="modal-title" *ngIf="!editMode">Add new student</h4>
   <button class="btn btn-outline-secondary" aria-label="Close" (click)="activeModal.close()" style="width: 40px;">
     <span aria-hidden="true">&times;</span>
   </button>

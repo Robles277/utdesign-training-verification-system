@@ -13,7 +13,7 @@ import { ScheduleNewStudentComponent } from './components/schedule-new-student/s
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginModalComponent } from './components/modals/login-modal/login-modal.component'
-import { EditStudentModalComponent } from './components/modals/edit-student-modal/edit-student-modal.component';
+import { AddEditStudentModalComponent } from './components/modals/add-edit-student-modal/add-edit-student-modal.component';
 import { DeleteStudentModalComponent } from './components/modals/delete-student-modal/delete-student-modal.component';
 import { ShowAppointmentsComponent } from './components/show-appointments/show-appointments.component';
 import { ShowMachinesComponent } from './components/show-machines/show-machines.component';
@@ -28,7 +28,7 @@ import { ShowMachinesComponent } from './components/show-machines/show-machines.
     ShowStudentsComponent,
     ScheduleNewStudentComponent,
     LoginModalComponent,
-    EditStudentModalComponent,
+    AddEditStudentModalComponent,
     DeleteStudentModalComponent,
     ShowAppointmentsComponent,
     ShowMachinesComponent,

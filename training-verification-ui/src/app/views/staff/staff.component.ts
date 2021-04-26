@@ -5,7 +5,7 @@ import { iAppointment, iStudent, iUseRecord } from '../../interfaces';
 import { ShowStudentsComponent } from 'src/app/components/show-students/show-students.component';
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { UseRecordService } from 'src/app/services/use-record.service';
-import * as FileSaver from 'file-saver';
+import { saveAs } from 'file-saver';
 import { NgForm } from '@angular/forms';
 
 
@@ -50,14 +50,14 @@ export class StaffComponent implements OnInit {
 
 
   downloadLog()
-  {    
+  {
     this.useRecordService.getTextFile('api/use-records/downloadCSV')
       .subscribe(data => {
         let newblob = new Blob([data], { type: 'text/csv;charset=utf-8;' });
-        FileSaver.saveAs(newblob, 'log.csv');
-      });  
+        saveAs(newblob, 'log.csv');
+      });
   }
- 
+
   showAllStudents() {
     this.showMachines = false;
     this.showAppointments = false;
