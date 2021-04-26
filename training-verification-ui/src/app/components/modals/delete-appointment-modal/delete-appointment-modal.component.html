@@ -1,0 +1,34 @@
+<div class="modal-header">
+  <h4 class="modal-title">Delete appointment</h4>
+  <button class="btn btn-outline-secondary" aria-label="Close" (click)="activeModal.close()" style="width: 40px;">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class="form-row">
+    <div class="form-group col-6">
+      <label class="no-input-label" for="appointmentOrganizer">Organizer</label>
+      <div class="input-group">{{ appointment.organizer }}</div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-6">
+      <label class="no-input-label" for="appointmentStartTime">Start Time</label>
+      <div class="input-group">{{ appointment.startTime | date: 'long' }}</div>
+    </div>
+    <div class="form-group col-6">
+      <label class="no-input-label" for="appointmentEndTime">End Time</label>
+      <div class="input-group">{{ appointment.endTime | date: 'long' }}</div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer d-flex flex-row-reverse justify-content-between">
+  <div class="d-block w-25">
+    <button type="button" class="btn w-100" (click)="onClickSubmitButton($event.currentTarget)">
+      Submit
+    </button>
+  </div>
+</div>
