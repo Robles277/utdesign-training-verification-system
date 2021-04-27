@@ -6,6 +6,7 @@ import { trainingLevelStrings } from "src/app/enums";
 import { iStudent } from "src/app/interfaces";
 import { StudentService } from "src/app/services/student.service";
 import { Helpers } from "src/helpers";
+import { NotificationService } from 'src/app/services/notification.service'
 
 @Component({
   selector: 'app-edit-student-modal',
@@ -22,7 +23,8 @@ export class EditStudentModalComponent implements OnInit {
   constructor(
     private studentService: StudentService,
     private formBuilder: FormBuilder,
-    public activeModal: NgbActiveModal
+    public activeModal: NgbActiveModal,
+    private notifyService : NotificationService
   ) {
 
   }
@@ -58,8 +60,8 @@ export class EditStudentModalComponent implements OnInit {
         (result: boolean) => {
           if (result) {
             Helpers.individualKeyCopy(updatedStudent, this.student);
-            // display a success message somewhere, can we get like a toast module
             this.activeModal.close();
+            this.notifyService.showSuccess("Student edited successfully")
             return;
           }
         },

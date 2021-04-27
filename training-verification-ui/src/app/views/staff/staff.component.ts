@@ -8,6 +8,8 @@ import { UseRecordService } from 'src/app/services/use-record.service';
 import * as FileSaver from 'file-saver';
 import { NgForm } from '@angular/forms';
 
+import { NotificationService } from 'src/app/services/notification.service'
+
 
 @Component({
   selector: 'app-staff',
@@ -21,9 +23,10 @@ export class StaffComponent implements OnInit {
   showAppointments: boolean = false;
   csv: any
 
-  constructor(private useRecordService: UseRecordService,
-
-  ) { }
+  constructor(
+    private useRecordService: UseRecordService,
+    private notifyService : NotificationService
+  ) {  }
 
   ngOnInit(): void {
 
@@ -55,7 +58,9 @@ export class StaffComponent implements OnInit {
       .subscribe(data => {
         let newblob = new Blob([data], { type: 'text/csv;charset=utf-8;' });
         FileSaver.saveAs(newblob, 'log.csv');
-      });  
+      });
+      this.notifyService.showSuccess("Downloading Data")
+
   }
  
   showAllStudents() {

@@ -17,6 +17,8 @@ import { EditStudentModalComponent } from './components/modals/edit-student-moda
 import { DeleteStudentModalComponent } from './components/modals/delete-student-modal/delete-student-modal.component';
 import { ShowAppointmentsComponent } from './components/show-appointments/show-appointments.component';
 import { ShowMachinesComponent } from './components/show-machines/show-machines.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { ShowMachinesComponent } from './components/show-machines/show-machines.
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
