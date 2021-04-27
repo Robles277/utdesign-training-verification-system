@@ -1,0 +1,73 @@
+<div class="modal-header">
+  <h4 class="modal-title" *ngIf="editMode">Edit appointment</h4>
+  <h4 class="modal-title" *ngIf="!editMode">Add new appointment</h4>
+  <button class="btn btn-outline-secondary" aria-label="Close" (click)="activeModal.close()" style="width: 40px;">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <form autocomplete="off" [formGroup]="formAppointment">
+    <div class="form-row">
+      <div class="form-group col-6">
+        <label for="appointmentOrganizer">Organizer <span class="text-required">*</span></label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="appointmentOrganizer" formControlName="appointmentOrganizer" tabindex="0"/>
+        </div>
+        <span class="text-required" *ngIf="formAppointment.get('appointmentOrganizer')!.touched && formAppointment.get('appointmentOrganizer')!.errors">Enter an organizer</span>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-6">
+        <label for="appointmentStartDate">Start Date <span class="text-required">*</span></label>
+        <div class="input-group">
+          <input
+          type="text"
+          class="form-control"
+          id="appointmentStartDate"
+          formControlName="appointmentStartDate"
+          ngbDatepicker
+          placeholder="yyyy-mm-dd"
+          #startdate="ngbDatepicker"
+
+          />
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="startdate.toggle()" type="button">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+        <span class="text-required" *ngIf="formAppointment.get('appointmentStartDate')!.touched && formAppointment.get('appointmentStartDate')!.errors">Enter a start date</span>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-6">
+        <label for="appointmentStartTime">Start Time <span class="text-required">*</span></label>
+        <div class="input-group">
+          <ngb-timepicker [(ngModel)]="startTime" [ngModelOptions]="{standalone: true}"></ngb-timepicker>
+        </div>
+        <span class="text-required" *ngIf="formAppointment.get('appointmentStartTime')!.touched && formAppointment.get('appointmentStartTime')!.errors">Enter a start time</span>
+      </div>
+      <div class="form-group col-6">
+        <label for="appointmentEndTime">End Time <span class="text-required">*</span></label>
+        <div class="input-group">
+          <ngb-timepicker [(ngModel)]="endTime" [ngModelOptions]="{standalone: true}"></ngb-timepicker>
+        </div>
+        <span class="text-required" *ngIf="formAppointment.get('appointmentEndTime')!.touched && formAppointment.get('appointmentEndTime')!.errors">Enter an end time</span>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer d-flex flex-row-reverse justify-content-between">
+  <div class="d-block w-25">
+    <button type="button" class="btn w-100"
+      #p="ngbPopover"
+      ngbPopover="Ensure all required fields are populated!"
+      triggers="manual"
+      (click)="formAppointment.invalid ? p.open() : onClickSubmitButton($event.currentTarget)">
+      Submit
+    </button>
+  </div>
+</div>

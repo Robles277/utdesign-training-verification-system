@@ -1,16 +1,22 @@
 <h1 align="center">All Appointments</h1>
 <p align="center">{{currentDate | date: 'longDate'}}</p>
+<button class="float-right btn-sm btn-big-text" alt="Add new appointment" (click)="openAddAppointmentModal()">
+  <i class="far fa-plus-square" aria-hidden="true"></i>
+</button>
 <table style="width:100%">
     <tr>
-      <th>Organizaer</th>
+      <th>Organizer</th>
       <th>Date</th>
       <th>Start Time</th>
       <th>End Time</th>
+      <th>Actions</th>
     </tr>
    <tr *ngFor="let appointment of appointments; let i = index">
       <td>{{appointment.organizer}}</td>
       <td>{{appointment.startTime | date: 'longDate'}}</td>
       <td>{{appointment.startTime | date: 'shortTime'}}</td>
       <td>{{appointment.endTime | date: 'shortTime'}}</td>
+      <td><button class="btn-sm" (click)="openEditAppointmentModal(appointment)"><i class="fas fa-pencil-alt" aria-hidden="true"></i></button>
+      <button class="btn-sm" (click)="openDeleteAppointmentModal(appointment)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
    </tr>
   </table>

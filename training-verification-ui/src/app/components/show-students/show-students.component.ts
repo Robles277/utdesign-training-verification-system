@@ -3,9 +3,10 @@ import { StudentService } from '../../services/student.service';
 import { DatePipe } from '@angular/common';
 import { iStudent } from '../../interfaces';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { EditStudentModalComponent } from '../modals/edit-student-modal/edit-student-modal.component';
+import { AddEditStudentModalComponent } from '../modals/add-edit-student-modal/add-edit-student-modal.component';
 import { DeleteStudentModalComponent } from '../modals/delete-student-modal/delete-student-modal.component';
 import { trainingLevelStrings } from 'src/app/enums';
+
 
 @Component({
   selector: 'app-show-students',
@@ -30,13 +31,29 @@ export class ShowStudentsComponent implements OnInit {
     });
   }
 
+  openAddStudentModal() {
+    const modalRef = this.modalService.open(AddEditStudentModalComponent, {
+      backdrop: 'static',
+      keyboard: false,
+      size: 'lg'
+    });
+    modalRef.componentInstance.student = null;
+    modalRef.componentInstance.editMode = false;
+    modalRef.result.then(result => {
+      if (result) {
+        this.students.push(result.object);
+      }
+    });
+  }
+
   openEditStudentModal(student: iStudent) {
-    const modalRef = this.modalService.open(EditStudentModalComponent, {
+    const modalRef = this.modalService.open(AddEditStudentModalComponent, {
       backdrop: 'static',
       keyboard: false,
       size: 'lg'
     });
     modalRef.componentInstance.student = student;
+    modalRef.componentInstance.editMode = true;
   }
 
   openDeleteStudentModal(student: iStudent) {
@@ -47,10 +64,11 @@ export class ShowStudentsComponent implements OnInit {
     });
     modalRef.componentInstance.student = student;
     modalRef.result.then(result => {
-      // logic for whatever the modal returns
-      // result is the "return value", "then" turns it into a promise
-      // you can return a value from a modal (when you're within a modal and not here) via
-      // this.activeModal.close(WHATVER YOU WANT TO RETURN)
+      if (result && result.success) {
+        let index = -1;
+        index = this.students.findIndex(element => element.studentPk === result.itemPk);
+        this.students.splice(index, 1);
+      }
     });
   }
 
