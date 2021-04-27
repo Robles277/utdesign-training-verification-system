@@ -1,18 +1,12 @@
 <h1 align="center">All Machines</h1>
 <p align="center">{{currentDate | date: 'longDate'}}</p>
-<button class="float-right btn-sm btn-big-text" alt="Add new machine" (click)="openAddMachineModal()">
-  <i class="far fa-plus-square" aria-hidden="true"></i>
-</button>
 <table style="width:100%">
     <tr>
-      <th>Machine Name</th>
       <th>Machine Tag</th>
-      <th>Actions</th>
+      <th>Machine Name</th>
     </tr>
    <tr *ngFor="let machine of machines; let i = index">
-      <td>{{machine.machineName}}</td>
       <td>{{machine.machineTag}}</td>
-      <td><button class="btn-sm" (click)="openEditMachineModal(machine)"><i class="fas fa-pencil-alt" aria-hidden="true"></i></button>
-      <button class="btn-sm" (click)="openDeleteMachineModal(machine)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+      <td>{{machine.machineName}}</td>
    </tr>
-</table>
+  </table>

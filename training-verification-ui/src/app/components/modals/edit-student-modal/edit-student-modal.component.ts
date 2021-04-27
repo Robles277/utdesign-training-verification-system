@@ -6,17 +6,15 @@ import { trainingLevelStrings } from "src/app/enums";
 import { iStudent } from "src/app/interfaces";
 import { StudentService } from "src/app/services/student.service";
 import { Helpers } from "src/helpers";
-import { NotificationService } from 'src/app/services/notification.service'
 
 @Component({
-  selector: 'app-add-edit-student-modal',
-  templateUrl: './add-edit-student-modal.component.html',
-  styleUrls: ['./add-edit-student-modal.component.scss']
+  selector: 'app-edit-student-modal',
+  templateUrl: './edit-student-modal.component.html',
+  styleUrls: ['./edit-student-modal.component.scss']
 })
 
-export class AddEditStudentModalComponent implements OnInit {
+export class EditStudentModalComponent implements OnInit {
   @Input() student!: iStudent;
-  @Input() editMode!: boolean;
   public formStudent!: FormGroup;
   public selectedTrainingLevel: string = "";
   public trainingLevelStringsExtra = trainingLevelStrings;
@@ -24,23 +22,12 @@ export class AddEditStudentModalComponent implements OnInit {
   constructor(
     private studentService: StudentService,
     private formBuilder: FormBuilder,
-    public activeModal: NgbActiveModal,
-    private notifyService : NotificationService
+    public activeModal: NgbActiveModal
   ) {
 
   }
 
   ngOnInit() {
-    if (!this.editMode) {
-      this.student = {
-        studentId: "",
-        netId: "",
-        firstName: "",
-        lastName: "",
-        trainingLevel: 0,
-        identifier: ""
-      }
-    }
     this.selectedTrainingLevel = trainingLevelStrings[this.student.trainingLevel];
 
     this.formStudent = this.formBuilder.group({
@@ -58,11 +45,6 @@ export class AddEditStudentModalComponent implements OnInit {
   }
 
   onClickSubmitButton(target: EventTarget | null) {
-    this.editMode ? this.updateStudent(target)
-      : this.createStudent(target);
-  }
-
-  updateStudent(target: EventTarget | null) {
     let updatedStudent = this.buildStudent();
     updatedStudent.studentPk = this.student.studentPk;
 
@@ -76,8 +58,8 @@ export class AddEditStudentModalComponent implements OnInit {
         (result: boolean) => {
           if (result) {
             Helpers.individualKeyCopy(updatedStudent, this.student);
+            // display a success message somewhere, can we get like a toast module
             this.activeModal.close();
-            this.notifyService.showSuccess("Student edited successfully")
             return;
           }
         },
@@ -87,30 +69,7 @@ export class AddEditStudentModalComponent implements OnInit {
       );
   }
 
-  createStudent(target: EventTarget | null) {
-    let newStudent = this.buildStudent();
-
-    let button = <HTMLButtonElement>target;
-    button.disabled = true;
-    this.studentService.addStudent(newStudent).pipe(
-      finalize(() => {
-        button.disabled = false;
-      }))
-      .subscribe(
-        (result: boolean) => {
-          if (result) {
-            // display a success message somewhere, can we get like a toast module
-            this.activeModal.close({object: newStudent});
-            return;
-          }
-        },
-        error => {
-          console.error("Unable to create student!: ", error);
-        }
-      );
-  }
-
-  buildStudent(): iStudent {
+  buildStudent() {
     let student: iStudent = {
       studentId: this.formStudent.get("studentId")!.value.trim(),
       netId: this.formStudent.get("studentNetId")!.value.trim(),

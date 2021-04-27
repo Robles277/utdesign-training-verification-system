@@ -123,11 +123,7 @@
             "production": {
               "devServerTarget": "training-verification-ui:serve:production"
             }
-          },
-          "styles": [
-            "node_modules/ngx-toastr/toastr.css",
-            "src/styles.css"
-          ]
+          }
         }
       }
     }

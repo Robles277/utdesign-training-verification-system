@@ -1,6 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title" *ngIf="editMode">Edit {{student.firstName}} {{student.lastName}}</h4>
-  <h4 class="modal-title" *ngIf="!editMode">Add new student</h4>
+  <h4 class="modal-title">Edit {{student.firstName}} {{student.lastName}}</h4>
   <button class="btn btn-outline-secondary" aria-label="Close" (click)="activeModal.close()" style="width: 40px;">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -44,7 +43,7 @@
 
     <div class="form-row">
       <div class="form-group col-6">
-        <label for="studentIdentifier">Group/Identifier</label>
+        <label for="studentIdentifier">Group/Identifier <span class="text-required">*</span></label>
         <div class="input-group">
           <input type="text" class="form-control" id="studentIdentifier" formControlName="studentIdentifier" tabindex="0"/>
         </div>

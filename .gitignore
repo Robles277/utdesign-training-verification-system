@@ -4,9 +4,6 @@
 ## Hiding the eventual node_modules
 **/node_modules/
 
-## Dear god why did I think package lock needed to be shared
-package-lock.json
-
 target/
 !.mvn/wrapper/maven-wrapper.jar
 

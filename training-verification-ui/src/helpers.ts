@@ -17,12 +17,4 @@ export class Helpers {
     return target;
   }
 
-  public static validateDate(control: AbstractControl): boolean | null {
-    let v = control.value;
-    if (v) {
-      return v.year && v.month && v.day ? null : false;
-    }
-    return null;
-  }
-
 }

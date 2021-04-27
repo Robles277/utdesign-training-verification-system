@@ -5,7 +5,7 @@ export interface iStudent {
   netId: string;
   firstName: string;
   lastName: string;
-  identifier?: string;
+  identifier: string;
   trainingLevel: number;
 }
 
