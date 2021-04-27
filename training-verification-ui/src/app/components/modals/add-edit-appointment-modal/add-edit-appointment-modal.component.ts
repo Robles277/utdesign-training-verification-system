@@ -91,7 +91,7 @@ export class AddEditAppointmentModalComponent implements OnInit {
         button.disabled = false;
       }))
       .subscribe(
-        (result: boolean) => {
+        (result: number) => {
           if (result) {
             this.activeModal.close({object: newAppointment});
             this.notifyService.showSuccess("Appointment created successfully!");

@@ -83,7 +83,7 @@ export class AddEditMachineModalComponent implements OnInit {
         button.disabled = false;
       }))
       .subscribe(
-        (result: boolean) => {
+        (result: number) => {
           if (result) {
             this.activeModal.close({object: newMachine});
             this.notifyService.showSuccess("Machine created successfully!");

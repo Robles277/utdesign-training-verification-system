@@ -48,20 +48,20 @@ export class MachineService {
     ));
   }
 
-  public addMachine(newMachine: iMachine): Observable<boolean> {
+  public addMachine(newMachine: iMachine): Observable<number> {
     let httpHeaders = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Cache-Control', 'no-cache');
     let options = {headers: httpHeaders};
 
-    return this.http.post(`api/machines`, newMachine, options).pipe(
+    return this.http.post<number>(`api/machines`, newMachine, options).pipe(
       map(
-        () => {
-          return true;
+        (result: number) => {
+          return result;
         },
         (error: any) => {
           console.error("Failed to add machine", error);
-          return false;
+          return 0;
         }
       ));
   }
