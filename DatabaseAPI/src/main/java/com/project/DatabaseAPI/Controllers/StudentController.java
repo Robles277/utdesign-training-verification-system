@@ -87,32 +87,33 @@ public class StudentController {
   public void deleteStudent(@PathVariable Integer id) {
       studentService.deleteStudent(id);
   }
-  
+
   @PostMapping("/students/upload")
   public ResponseEntity<?> uploadCSV(@RequestParam("file") MultipartFile file) {
-	  
+
 	  try {
-		  
+
 		  BufferedReader fileReader = new BufferedReader(new InputStreamReader(file.getInputStream(), "UTF-8"));
 		  CSVParser csvParser = new CSVParser(fileReader, CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());
 		  // parse the csv and add each student
 		  for (CSVRecord csvRecord : csvParser) {
-			  
+
 			  Student student = new Student(
 					  csvRecord.get("Student Id"),
 					  csvRecord.get("NetId"),
 					  csvRecord.get("First Name"),
 					  csvRecord.get("Last Name"),
-					  Short.parseShort(csvRecord.get("Training Level")));
-			  
+					  Short.parseShort(csvRecord.get("Training Level")),
+					  "");
+
 			  studentService.addStudent(student);
 		  }
-		  
+
 		  return new ResponseEntity<>(HttpStatus.OK);
 		  }
 	  catch (Exception e) {
 		  throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to upload file", e);
 	  }
   }
-  
+
 }
