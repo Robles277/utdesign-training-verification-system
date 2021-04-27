@@ -67,8 +67,9 @@ public class StudentController {
   }
 
   @PostMapping("/students")
-  public void addStudent(@RequestBody Student student) {
+  public int addStudent(@RequestBody Student student) {
 	  studentService.addStudent(student);
+	  return student.getStudentPk();
   }
 
   @PutMapping("/students/{id}")
