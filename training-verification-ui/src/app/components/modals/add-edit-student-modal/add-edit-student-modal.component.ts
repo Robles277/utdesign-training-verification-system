@@ -77,12 +77,13 @@ export class AddEditStudentModalComponent implements OnInit {
           if (result) {
             Helpers.individualKeyCopy(updatedStudent, this.student);
             this.activeModal.close();
-            this.notifyService.showSuccess("Student edited successfully")
+            this.notifyService.showSuccess("Student edited successfully!");
             return;
           }
         },
         error => {
           console.error("Unable to update student!: ", error);
+          this.notifyService.showError(`Unable to update student!: ${error}`, "ERROR");
         }
       );
   }
@@ -97,15 +98,17 @@ export class AddEditStudentModalComponent implements OnInit {
         button.disabled = false;
       }))
       .subscribe(
-        (result: boolean) => {
+        (result: number) => {
           if (result) {
-            // display a success message somewhere, can we get like a toast module
+            newStudent.studentPk = result;
             this.activeModal.close({object: newStudent});
+            this.notifyService.showSuccess("Student created successfully!");
             return;
           }
         },
         error => {
           console.error("Unable to create student!: ", error);
+          this.notifyService.showError(`Unable to create student!: ${error}`, "ERROR");
         }
       );
   }

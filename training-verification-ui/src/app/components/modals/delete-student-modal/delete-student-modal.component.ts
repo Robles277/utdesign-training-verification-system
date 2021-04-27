@@ -4,7 +4,7 @@ import { finalize } from "rxjs/operators";
 import { trainingLevelStrings } from "src/app/enums";
 import { iStudent } from "src/app/interfaces";
 import { StudentService } from "src/app/services/student.service";
-import { Helpers } from "src/helpers";
+import { NotificationService } from "src/app/services/notification.service";
 
 @Component({
   selector: 'app-delete-student-modal',
@@ -17,7 +17,8 @@ export class DeleteStudentModalComponent {
 
   constructor(
     private studentService: StudentService,
-    public activeModal: NgbActiveModal
+    private notifyService: NotificationService,
+    public activeModal: NgbActiveModal,
   ) {
 
   }
@@ -36,13 +37,14 @@ export class DeleteStudentModalComponent {
       .subscribe(
         (result: boolean) => {
           if (result) {
-            // display a success message somewhere, can we get like a toast module
             this.activeModal.close({success: true, itemPk: this.student.studentPk!});
+            this.notifyService.showSuccess("Student deleted successfully!");
             return;
           }
         },
         error => {
           console.error("Unable to delete student!: ", error);
+          this.notifyService.showError(`Unable to delete student!: ${error}`, "ERROR");
         }
       );
   }

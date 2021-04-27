@@ -4,6 +4,7 @@ import { NgbActiveModal, NgbDateStruct, NgbTimeStruct, NgbDatepicker, NgbTimepic
 import { finalize } from "rxjs/operators";
 import { iAppointment } from "src/app/interfaces";
 import { AppointmentService } from "src/app/services/appointment.service";
+import { NotificationService } from 'src/app/services/notification.service'
 import { Helpers } from "src/helpers";
 import { DatePipe } from '@angular/common';
 
@@ -24,6 +25,7 @@ export class AddEditAppointmentModalComponent implements OnInit {
   constructor(
     private appointmentService: AppointmentService,
     private formBuilder: FormBuilder,
+    private notifyService: NotificationService,
     public activeModal: NgbActiveModal
   ) {
 
@@ -67,13 +69,14 @@ export class AddEditAppointmentModalComponent implements OnInit {
         (result: boolean) => {
           if (result) {
             Helpers.individualKeyCopy(updatedAppointment, this.appointment);
-            // display a success message somewhere, can we get like a toast module
             this.activeModal.close();
+            this.notifyService.showSuccess("Appointment edited successfully!");
             return;
           }
         },
         error => {
           console.error("Unable to update appointment!: ", error);
+          this.notifyService.showError(`Unable to update appointment!: ${error}`, "ERROR");
         }
       );
   }
@@ -90,13 +93,14 @@ export class AddEditAppointmentModalComponent implements OnInit {
       .subscribe(
         (result: boolean) => {
           if (result) {
-            // display a success message somewhere, can we get like a toast module
             this.activeModal.close({object: newAppointment});
+            this.notifyService.showSuccess("Appointment created successfully!");
             return;
           }
         },
         error => {
           console.error("Unable to create appointment!: ", error);
+          this.notifyService.showError(`Unable to create appointment!: ${error}`, "ERROR");
         }
       );
   }

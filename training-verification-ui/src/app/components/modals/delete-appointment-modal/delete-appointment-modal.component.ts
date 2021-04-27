@@ -3,7 +3,7 @@ import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { finalize } from "rxjs/operators";
 import { iAppointment } from "src/app/interfaces";
 import { AppointmentService } from "src/app/services/appointment.service";
-import { Helpers } from "src/helpers";
+import { NotificationService } from "src/app/services/notification.service";
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -17,6 +17,7 @@ export class DeleteAppointmentModalComponent {
 
   constructor(
     private appointmentService: AppointmentService,
+    private notifyService: NotificationService,
     public activeModal: NgbActiveModal
   ) {
 
@@ -32,13 +33,14 @@ export class DeleteAppointmentModalComponent {
       .subscribe(
         (result: boolean) => {
           if (result) {
-            // display a success message somewhere, can we get like a toast module
             this.activeModal.close({success: true, itemPk: this.appointment.idAppointment!});
+            this.notifyService.showSuccess("Appointment deleted successfully!");
             return;
           }
         },
         error => {
           console.error("Unable to delete appointment!: ", error);
+          this.notifyService.showError(`Unable to delete appointment!: ${error}`, "ERROR");
         }
       );
   }

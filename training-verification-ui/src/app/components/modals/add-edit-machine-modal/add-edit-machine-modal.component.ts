@@ -4,6 +4,7 @@ import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { finalize } from "rxjs/operators";
 import { iMachine } from "src/app/interfaces";
 import { MachineService } from "src/app/services/machine.service";
+import { NotificationService } from 'src/app/services/notification.service'
 import { Helpers } from "src/helpers";
 
 @Component({
@@ -20,6 +21,7 @@ export class AddEditMachineModalComponent implements OnInit {
 
   constructor(
     private machineService: MachineService,
+    private notifyService: NotificationService,
     private formBuilder: FormBuilder,
     public activeModal: NgbActiveModal
   ) {
@@ -59,13 +61,14 @@ export class AddEditMachineModalComponent implements OnInit {
         (result: boolean) => {
           if (result) {
             Helpers.individualKeyCopy(updatedMachine, this.machine);
-            // display a success message somewhere, can we get like a toast module
             this.activeModal.close();
+            this.notifyService.showSuccess("Machine edited successfully!");
             return;
           }
         },
         error => {
           console.error("Unable to update machine!: ", error);
+          this.notifyService.showError(`Unable to update machine!: ${error}`, "ERROR");
         }
       );
   }
@@ -82,13 +85,14 @@ export class AddEditMachineModalComponent implements OnInit {
       .subscribe(
         (result: boolean) => {
           if (result) {
-            // display a success message somewhere, can we get like a toast module
             this.activeModal.close({object: newMachine});
+            this.notifyService.showSuccess("Machine created successfully!");
             return;
           }
         },
         error => {
           console.error("Unable to create machine!: ", error);
+          this.notifyService.showError(`Unable to create machine!: ${error}`, "ERROR");
         }
       );
   }

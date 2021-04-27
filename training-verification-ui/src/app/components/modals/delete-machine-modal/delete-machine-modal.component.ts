@@ -3,6 +3,7 @@ import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { finalize } from "rxjs/operators";
 import { iMachine } from "src/app/interfaces";
 import { MachineService } from "src/app/services/machine.service";
+import { NotificationService } from "src/app/services/notification.service";
 
 @Component({
   selector: 'app-delete-machine-modal',
@@ -15,6 +16,7 @@ export class DeleteMachineModalComponent {
 
   constructor(
     private machineService: MachineService,
+    private notifyService: NotificationService,
     public activeModal: NgbActiveModal
   ) {
 
@@ -30,13 +32,14 @@ export class DeleteMachineModalComponent {
       .subscribe(
         (result: boolean) => {
           if (result) {
-            // display a success message somewhere, can we get like a toast module
             this.activeModal.close({success: true, itemPk: this.machine.machinePk!});
+            this.notifyService.showSuccess("Machine deleted successfully!");
             return;
           }
         },
         error => {
           console.error("Unable to delete machine!: ", error);
+          this.notifyService.showError(`Unable to delete machine!: ${error}`, "ERROR");
         }
       );
   }
