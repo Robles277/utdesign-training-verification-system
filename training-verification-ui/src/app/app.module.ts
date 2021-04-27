@@ -22,6 +22,8 @@ import { DeleteMachineModalComponent } from './components/modals/delete-machine-
 import { CommonModule } from '@angular/common';
 import { AddEditAppointmentModalComponent } from './components/modals/add-edit-appointment-modal/add-edit-appointment-modal.component';
 import { DeleteAppointmentModalComponent } from './components/modals/delete-appointment-modal/delete-appointment-modal.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { DeleteAppointmentModalComponent } from './components/modals/delete-appo
     NgbModule,
     NgbDatepickerModule,
     NgbTimepickerModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

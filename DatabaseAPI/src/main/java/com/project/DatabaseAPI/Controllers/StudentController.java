@@ -95,7 +95,6 @@ public class StudentController {
 
 		  BufferedReader fileReader = new BufferedReader(new InputStreamReader(file.getInputStream(), "UTF-8"));
 		  CSVParser csvParser = new CSVParser(fileReader, CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());
-		  // parse the csv and add each student
 		  for (CSVRecord csvRecord : csvParser) {
 
 			  Student student = new Student(
@@ -104,7 +103,7 @@ public class StudentController {
 					  csvRecord.get("First Name"),
 					  csvRecord.get("Last Name"),
 					  Short.parseShort(csvRecord.get("Training Level")),
-					  "");
+					  csvRecord.get("Identifier"));
 
 			  studentService.addStudent(student);
 		  }

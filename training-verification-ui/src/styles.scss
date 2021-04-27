@@ -1,3 +1,5 @@
+@import '~ngx-toastr/toastr.css';
+
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 
@@ -93,3 +95,26 @@ th {
 table {
     border-spacing: 5px;
 }
+
+/* TOASTR BUGFIX */
+#toast-container > div {
+  opacity: 1;
+}
+.toast {
+  font-size: initial;
+  border: initial;
+  backdrop-filter: blur(0);
+}
+.toast-success {
+  background-color: #51A351;
+}
+.toast-error {
+  background-color: #BD362F;
+}
+.toast-info {
+  background-color: #2F96B4;
+}
+.toast-warning {
+  background-color: #F89406;
+}
+
