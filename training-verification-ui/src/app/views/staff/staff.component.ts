@@ -5,6 +5,7 @@ import { iAppointment, iStudent, iUseRecord } from '../../interfaces';
 import { ShowStudentsComponent } from 'src/app/components/show-students/show-students.component';
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { UseRecordService } from 'src/app/services/use-record.service';
+import { MachineService } from 'src/app/services/machine.service';
 import * as FileSaver from 'file-saver';
 import { NgForm } from '@angular/forms';
 
@@ -21,7 +22,9 @@ export class StaffComponent implements OnInit {
   showAppointments: boolean = false;
   csv: any
 
-  constructor(private useRecordService: UseRecordService, private studentService: StudentService
+  constructor(private useRecordService: UseRecordService, 
+              private studentService: StudentService,
+              private machineService: MachineService
 
   ) { }
 
@@ -63,7 +66,7 @@ export class StaffComponent implements OnInit {
     let file = (document.getElementById("file1") as HTMLInputElement).files?.[0]
     let formData = new FormData();
     formData.append("file", file as Blob, "")
-    this.studentService.uploadMachineCSV(formData).subscribe(data => {
+    this.machineService.uploadMachineCSV(formData).subscribe(data => {
       alert("File uploaded.")
     })
   }

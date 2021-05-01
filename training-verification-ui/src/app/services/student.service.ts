@@ -119,7 +119,4 @@ export class StudentService {
     return this.http.post('api/students/uploadStudentCSV', file);
   }
 
-  uploadMachineCSV(file: FormData): Observable<any> {
-    return this.http.post('api/students/uploadMachineCSV', file);
-  }
 }

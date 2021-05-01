@@ -78,7 +78,7 @@ public class MachineController {
       machineService.deleteMachine(id);
   }
   
-  @PostMapping("/students/uploadMachineCSV")
+  @PostMapping("/machines/uploadMachineCSV")
   public ResponseEntity<?> uploadCSV(@RequestParam("file") MultipartFile file) {
 	  
 	  try {
@@ -93,7 +93,13 @@ public class MachineController {
 					  csvRecord.get("Machine Name")
 					  );
 			  
-			  machineService.addMachine(machine);
+			  try {
+				  machineService.addMachine(machine);
+			  }
+			  catch(Exception e) {
+				  continue;
+			  }
+				  
 		  }
 		  csvParser.close();
 		  return new ResponseEntity<>(HttpStatus.OK);

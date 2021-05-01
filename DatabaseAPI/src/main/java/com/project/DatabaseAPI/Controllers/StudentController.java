@@ -106,7 +106,13 @@ public class StudentController {
 					  Short.parseShort(csvRecord.get("Training Level")),
 					  csvRecord.get("Identifier"));
 			  
-			  studentService.addStudent(student);
+			  try {
+				studentService.addStudent(student);
+			  }
+	    		catch(Exception e ){
+			  		continue;
+			  }
+		  
 		  }
 		  
 		  csvParser.close();
