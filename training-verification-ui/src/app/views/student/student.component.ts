@@ -33,14 +33,12 @@ export class StudentComponent {
   }
 
   onSubmit(): void {
-    //alert(JSON.stringify(this.loginForm.value));
     this.studentService.getStudent(this.loginForm.get("loginNetId")!.value.trim()).pipe(
       finalize(() => {
         if(this.currentStudent === undefined || this.currentStudent === null) {
           this.showUnknown();
         }
         else {
-          //console.log(this.currentStudent);
           this.openLoginModal(this.currentStudent);
         }
       }))
@@ -52,14 +50,7 @@ export class StudentComponent {
         // this is error case code (http error returned)
       }
     ); // end pipe
-    
-    // Promise.all([
-    //   this.studentService.getStudent(this.loginForm.get("loginNetId")!.value.trim()).toPromise(),
-    // ]).then((result) => {
-    //   this.currentStudent = result[0];
-    // });
-    
-    
+
     this.loginForm.reset();
   }
 
@@ -67,15 +58,25 @@ export class StudentComponent {
     const modalRef = this.modalService.open(LoginModalComponent, {
       backdrop: 'static',
       keyboard: false,
-      size: 'lg'  
+      size: 'lg'
     });
     modalRef.componentInstance.student = student;
+    modalRef.result.then(result => {
+      if (result.objectList) {
+        this.studentService.loginStudentToMachines(student, result.objectList)
+          .subscribe(
+            (result: boolean) => {
+
+            },
+            error => {
+              console.error("Error signing student in", error);
+            }
+          );
+      }
+    });
   }
 
   showUnknown() {
     alert("ERROR: No record of your netID exists in the current database. Please check your spelling or contact a staff member for assistance.");
-  }
-  showGood() {
-    alert("You are allowed into the lab.");
   }
 }

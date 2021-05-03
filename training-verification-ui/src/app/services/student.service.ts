@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { iStudent } from '../interfaces';
+import { iMachine, iStudent } from '../interfaces';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -99,7 +99,27 @@ export class StudentService {
         }
       ));
   }
-  uploadCSV(file: any): Observable<any> {
+
+  public uploadCSV(file: any): Observable<any> {
     return this.http.put('api/students/upload', file);
   }
+
+  public loginStudentToMachines(student: iStudent, machineList: iMachine[]): Observable<boolean> {
+    let httpHeaders = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Cache-Control', 'no-cache');
+    let options = {headers: httpHeaders};
+    
+    return this.http.post<boolean>(`api/students/${student.studentPk}/login`, machineList, options).pipe(
+      map(
+        () => {
+          return true;
+        },
+        (error: any) => {
+          console.error("Failed to login student", error);
+          return false;
+        }
+      ));
+  }
+
 }
