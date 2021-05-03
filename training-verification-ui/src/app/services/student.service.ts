@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { iStudent } from '../interfaces';
+import { iMachine, iStudent } from '../interfaces';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -46,38 +46,22 @@ export class StudentService {
     ));
   }
 
-  public addStudent(newStudent: iStudent): Observable<boolean> {
+  public addStudent(newStudent: iStudent): Observable<number> {
     let httpHeaders = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Cache-Control', 'no-cache');
     let options = {headers: httpHeaders};
 
-    return this.http.post(`api/students`, newStudent, options).pipe(
+    return this.http.post<number>(`api/students`, newStudent, options).pipe(
       map(
-        () => {
-          return true;
+        (result: number) => {
+          return result;
         },
         (error: any) => {
           console.error("Failed to add student", error);
-          return false;
+          return 0;
         }
       ));
-    /*
-    Ideally, this and below functions (once "Results" type objects are added as
-    interfaces and returned from API) would look like this:
-    return this.http.post<ResultsInsert>(`api/students`, newStudent, options).pipe(
-      .map(
-        (results: ResultsInsert) => {
-          if(result.success) {
-            return result;
-          }
-        },
-        error => {
-          console.error("Failed to add student", error);
-          throw new Error(error);
-        }
-      ));
-    */
   }
 
   public updateStudent(updatedStudent: iStudent): Observable<boolean> {
@@ -115,8 +99,44 @@ export class StudentService {
         }
       ));
   }
+  
   uploadStudentCSV(file: FormData): Observable<any> {
     return this.http.post('api/students/uploadStudentCSV', file);
   }
 
+  public loginStudentToMachines(student: iStudent, machineList: iMachine[]): Observable<boolean> {
+    let httpHeaders = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Cache-Control', 'no-cache');
+    let options = {headers: httpHeaders};
+
+    return this.http.post<boolean>(`api/use-records/${student.studentPk}/login`, machineList, options).pipe(
+      map(
+        () => {
+          return true;
+        },
+        (error: any) => {
+          console.error("Failed to login student", error);
+          return false;
+        }
+      ));
+  }
+
+  public logoutStudentFromMachines(studentNetId: string): Observable<boolean> {
+    // this is not RESTful, by the way
+    let httpHeaders = new HttpHeaders()
+      .set('Cache-Control', 'no-cache');
+    let options = {headers: httpHeaders};
+
+    return this.http.post<boolean>(`api/use-records/${studentNetId}/logout`, "", options).pipe(
+      map(
+        () => {
+          return true;
+        },
+        (error: any) => {
+          console.error("Failed to login student", error);
+          return false;
+        }
+      ));
+  }
 }

@@ -50,8 +50,9 @@ public class AppointmentController {
   }
 
   @PostMapping("/appointments")
-  public void addAppointment(@RequestBody Appointment appointment) {
+  public int addAppointment(@RequestBody Appointment appointment) {
 	  appointmentService.addAppointment(appointment);
+    return appointment.getIdAppointment();
   }
 
   @PutMapping("/appointments/{id}")

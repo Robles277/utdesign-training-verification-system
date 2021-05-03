@@ -48,20 +48,20 @@ export class AppointmentService {
     ));
   }
 
-  public addAppointment(newAppointment: iAppointment): Observable<boolean> {
+  public addAppointment(newAppointment: iAppointment): Observable<number> {
     let httpHeaders = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Cache-Control', 'no-cache');
     let options = {headers: httpHeaders};
 
-    return this.http.post(`api/appointments`, newAppointment, options).pipe(
+    return this.http.post<number>(`api/appointments`, newAppointment, options).pipe(
       map(
-        () => {
-          return true;
+        (result: number) => {
+          return result;
         },
         (error: any) => {
           console.error("Failed to add appointment", error);
-          return false;
+          return 0;
         }
       ));
   }

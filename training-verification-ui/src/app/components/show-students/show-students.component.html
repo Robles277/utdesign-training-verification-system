@@ -1,5 +1,8 @@
 <h1 align="center">All Students</h1>
 <p align="center">{{currentDate | date: 'longDate'}}</p>
+<button class="float-right btn-sm btn-big-text" alt="Add new student" (click)="openAddStudentModal()">
+  <i class="far fa-plus-square" aria-hidden="true"></i>
+</button>
 <table style="width:100%">
     <tr>
       <th>Last Name</th>
@@ -15,7 +18,7 @@
       <td>{{student.netId}}</td>
       <td>{{trainingLevelToString(student.trainingLevel)}}</td>
       <td>{{student.identifier}}</td>
-      <td><button class="" (click)="openEditStudentModal(student)"><i class="fas fa-pencil-alt" aria-hidden="true"></i></button>
-      <button class="" (click)="openDeleteStudentModal(student)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+      <td><button class="btn-sm" (click)="openEditStudentModal(student)"><i class="fas fa-pencil-alt" aria-hidden="true"></i></button>
+      <button class="btn-sm" (click)="openDeleteStudentModal(student)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
    </tr>
   </table>

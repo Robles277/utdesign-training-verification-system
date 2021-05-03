@@ -15,7 +15,7 @@
             <td class="align-left">{{machine.machineName}}</td>
             <td>
               <label class="container">
-                <input type="checkbox">
+                <input type="checkbox" class="dynamic-check" name="checkbox[]" value="{{machine.machinePk}}" ng-model="machine.selected">
                 <span class="checkmark"></span>
               </label>
             </td>

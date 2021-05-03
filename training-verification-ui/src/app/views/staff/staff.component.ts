@@ -6,8 +6,10 @@ import { ShowStudentsComponent } from 'src/app/components/show-students/show-stu
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { UseRecordService } from 'src/app/services/use-record.service';
 import { MachineService } from 'src/app/services/machine.service';
-import * as FileSaver from 'file-saver';
+import { saveAs } from 'file-saver';
 import { NgForm } from '@angular/forms';
+
+import { NotificationService } from 'src/app/services/notification.service'
 
 
 @Component({
@@ -15,33 +17,19 @@ import { NgForm } from '@angular/forms';
   templateUrl: './staff.component.html',
   styleUrls: ['./staff.component.css']
 })
-export class StaffComponent implements OnInit {
+export class StaffComponent {
 
   showStudents: boolean = false;
   showMachines: boolean = false;
   showAppointments: boolean = false;
   csv: any
 
-  constructor(private useRecordService: UseRecordService, 
-              private studentService: StudentService,
-              private machineService: MachineService
-
-  ) { }
-
-  ngOnInit(): void {
-
-  }
-
-  scheduleNew() {
-
-    alert("scheduleNew()");
-  }
-  manageSchedule() {
-    alert("manageSchedule()");
-  }
-  manageStudents() {
-    alert("manageStudents()");
-  }
+  constructor(
+    private useRecordService: UseRecordService,
+    private studentService: StudentService,
+    private machineService: MachineService,
+    private notifyService : NotificationService
+  ) {  }
 
   showForm(id:string) {
     var x = document.getElementById(id);
@@ -73,41 +61,31 @@ export class StaffComponent implements OnInit {
 
 
   downloadLog()
-  {    
+  {
     this.useRecordService.getTextFile('api/use-records/downloadCSV')
       .subscribe(data => {
         let newblob = new Blob([data], { type: 'text/csv;charset=utf-8;' });
-        FileSaver.saveAs(newblob, 'log.csv');
-      });  
+        saveAs(newblob, 'log.csv');
+      });
+      this.notifyService.showSuccess("Downloading Data")
+
   }
- 
+
   showAllStudents() {
     this.showMachines = false;
     this.showAppointments = false;
     this.showStudents = true;
   }
+
   showAllAppointments() {
     this.showStudents = false;
     this.showMachines = false;
     this.showAppointments = true;
   }
+
   showAllMachines() {
     this.showStudents = false;
     this.showAppointments = false;
     this.showMachines = true;
   }
-  postStudentTest() {
-
-  }
-
-  postAppointmentTest() {
-
-  }
-
-  postUseRecordTest() {
-
-  }
-
-
-
 }

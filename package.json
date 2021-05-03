@@ -6,7 +6,8 @@
   "dependencies": {
     "-": "0.0.1",
     "@angular/cli": "^11.2.5",
-    "g": "^2.0.1"
+    "g": "^2.0.1",
+    "ngx-toastr": "^13.2.1"
   },
   "devDependencies": {},
   "scripts": {

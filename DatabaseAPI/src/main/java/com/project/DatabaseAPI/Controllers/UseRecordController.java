@@ -155,4 +155,27 @@ public class UseRecordController {
 		  throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to generate report", e);
 	  }
   }
+  
+  @PostMapping("/use-records/{studentPk}/login")
+  public ResponseEntity<?> loginStudentToMachines(@PathVariable Integer studentPk,
+		  										@RequestBody Machine[] machineList) {
+	  try {
+		  useRecordService.loginStudent(studentPk, machineList);
+		  return new ResponseEntity<>(HttpStatus.OK);
+	  }
+	  catch (NoSuchElementException e) {
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);  
+	  }
+  	}
+  
+  @PostMapping("/use-records/{netId}/logout")
+  public ResponseEntity<?> logoutStudentFromMachines(@PathVariable String netId) {
+	  try {
+		  useRecordService.logoutStudent(netId);
+		  return new ResponseEntity<>(HttpStatus.OK);
+	  }
+	  catch (NoSuchElementException e) {
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);  
+	  }
+  	}
 }

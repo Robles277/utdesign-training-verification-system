@@ -45,16 +45,6 @@ public class StudentController {
 	  return studentService.getAllStudents();
   }
 
-//  @GetMapping("/students/{id}")
-//  public ResponseEntity<Student> getStudent(@PathVariable int id) {
-//	  try {
-//		  Student student = studentService.getStudent(id);
-//		  return new ResponseEntity<Student>(student, HttpStatus.OK);
-//	  }
-//	  catch(NoSuchElementException e) {
-//		  return new ResponseEntity<Student>(HttpStatus.NOT_FOUND);
-//	  }
-//  }
   @GetMapping("/students/{netId}")
   public ResponseEntity<Student> findStudent(@PathVariable String netId) {
 	  try {
@@ -67,8 +57,9 @@ public class StudentController {
   }
 
   @PostMapping("/students")
-  public void addStudent(@RequestBody Student student) {
+  public int addStudent(@RequestBody Student student) {
 	  studentService.addStudent(student);
+    return student.getStudentPk();
   }
 
   @PutMapping("/students/{id}")
@@ -92,7 +83,6 @@ public class StudentController {
   public ResponseEntity<?> uploadCSV(@RequestParam("file") MultipartFile file) {
 	  
 	  try {
-		  
 		  BufferedReader fileReader = new BufferedReader(new InputStreamReader(file.getInputStream(), "UTF-8"));
 		  CSVParser csvParser = new CSVParser(fileReader, CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());
 		  // parse the csv and add each student
@@ -112,9 +102,7 @@ public class StudentController {
 	    		catch(Exception e ){
 			  		continue;
 			  }
-		  
 		  }
-		  
 		  csvParser.close();
 		  return new ResponseEntity<>(HttpStatus.OK);
 		  }
@@ -122,5 +110,4 @@ public class StudentController {
 		  throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to upload file", e);
 	  }
   }
-  
 }

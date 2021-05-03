@@ -57,8 +57,9 @@ public class MachineController {
   }
 
   @PostMapping("/machines")
-  public void addMachine(@RequestBody Machine machine) {
+  public int addMachine(@RequestBody Machine machine) {
 	  machineService.addMachine(machine);
+    return machine.getMachinePk();
   }
 
   @PutMapping("/machines/{id}")
