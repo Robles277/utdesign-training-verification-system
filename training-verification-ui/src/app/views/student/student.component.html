@@ -19,7 +19,13 @@
       ngbPopover="Please enter a Net ID"
       triggers="manual"
       (click)="loginForm.invalid ? p.open() : onSubmit()">
-      Confirm</button>
+      Login</button>
+    <button class="button" type="button"
+      #p2="ngbPopover"
+      ngbPopover="Please enter a Net ID"
+      triggers="manual"
+      (click)="loginForm.invalid ? p2.open() : onLogout()">
+      Logout</button>
   </form>
 
   <div style="margin-top: 2pc;">

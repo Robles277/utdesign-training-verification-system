@@ -122,13 +122,13 @@ export class StudentService {
       ));
   }
 
-  public logoutStudentFromMachines(student: iStudent): Observable<boolean> {
+  public logoutStudentFromMachines(studentNetId: string): Observable<boolean> {
     // this is not RESTful, by the way
     let httpHeaders = new HttpHeaders()
       .set('Cache-Control', 'no-cache');
     let options = {headers: httpHeaders};
 
-    return this.http.post<boolean>(`api/use-records/${student.studentPk}/logout`, "", options).pipe(
+    return this.http.post<boolean>(`api/use-records/${studentNetId}/logout`, "", options).pipe(
       map(
         () => {
           return true;

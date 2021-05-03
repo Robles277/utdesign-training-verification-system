@@ -6,6 +6,7 @@ import { Helpers } from 'src/helpers';
 import { LoginModalComponent } from 'src/app/components/modals/login-modal/login-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { finalize } from 'rxjs/operators';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-student',
@@ -20,6 +21,7 @@ export class StudentComponent {
   constructor(
     private formBuilder: FormBuilder,
     private studentService: StudentService,
+    private notifyService: NotificationService,
     private modalService: NgbModal
   ) {
     this.loginForm = this.formBuilder.group({
@@ -51,6 +53,21 @@ export class StudentComponent {
       }
     ); // end pipe
 
+    this.loginForm.reset();
+  }
+
+  onLogout() {
+    this.studentService.logoutStudentFromMachines(this.loginForm.get("loginNetId")!.value.trim())
+      .subscribe(
+      (result: boolean) => {
+        if (result) {
+          this.notifyService.showSuccess("Successfully logged out.");
+        }
+      },
+      error => {
+        this.notifyService.showError("Something went wrong!: " + error, "ERROR");
+      }
+    );
     this.loginForm.reset();
   }
 

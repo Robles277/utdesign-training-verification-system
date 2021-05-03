@@ -23,17 +23,24 @@ public class UseRecord {
 	private int student_student_pk;
 
 	private int machine_machine_pk;
-
+	
+	@Column(name="date_of_sign_in", nullable=true)
 	private Date date_of_sign_in;
-
+	
+	@Column(name="date_of_sign_out", nullable=true)
 	private Date date_of_sign_out;
 	
 	@Column(name="session_length", nullable=true, insertable=false, updatable=false)
-	private int session_length; // virtual attribute in database
+	private Integer session_length; // virtual attribute in database
 
 	public UseRecord() {
 	}
-
+	
+	public UseRecord(int student_student_pk, int machine_machine_pk) {
+		this.student_student_pk = student_student_pk;
+		this.machine_machine_pk = machine_machine_pk;
+	}
+	
 	public UseRecord(Date date_of_sign_in, Date date_of_sign_out, int session_length, int student_student_pk, int machine_machine_pk) {
 		this.date_of_sign_in = date_of_sign_in;
 		this.date_of_sign_out = date_of_sign_out;
@@ -60,6 +67,6 @@ public class UseRecord {
 	public void setDateOfSignOut(Date date_of_sign_out) { this.date_of_sign_out = date_of_sign_out; }
 	
 	@Formula(value = "minute_diff(date_of_sign_in, date_of_sign_out)")
-	public int getSessionLength() { return session_length; }
-	public void setSessionLength(int session_length) { this.session_length = session_length; }
+	public Integer getSessionLength() { return session_length; }
+	public void setSessionLength(Integer session_length) { this.session_length = session_length; }
 }

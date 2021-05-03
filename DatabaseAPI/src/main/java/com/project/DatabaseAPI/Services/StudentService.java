@@ -29,6 +29,7 @@ public class StudentService {
 	public Student findStudent(String netId) {
 		return studentRepository.findByNetId(netId);
 	}
+	
   public void updateStudent(Integer id, Student updatedStudent) {
     Student existingStudent = getStudent(id);
     if (existingStudent != null) {

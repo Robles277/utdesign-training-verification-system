@@ -98,6 +98,7 @@ public class StudentController {
 
 			  studentService.addStudent(student);
 		  }
+		  csvParser.close();
 
 		  return new ResponseEntity<>(HttpStatus.OK);
 		  }
@@ -105,5 +106,4 @@ public class StudentController {
 		  throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to upload file", e);
 	  }
   }
-
 }
