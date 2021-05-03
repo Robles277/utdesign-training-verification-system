@@ -109,8 +109,26 @@ export class StudentService {
       .set('Content-Type', 'application/json')
       .set('Cache-Control', 'no-cache');
     let options = {headers: httpHeaders};
-    
-    return this.http.post<boolean>(`api/students/${student.studentPk}/login`, machineList, options).pipe(
+
+    return this.http.post<boolean>(`api/use-records/${student.studentPk}/login`, machineList, options).pipe(
+      map(
+        () => {
+          return true;
+        },
+        (error: any) => {
+          console.error("Failed to login student", error);
+          return false;
+        }
+      ));
+  }
+
+  public logoutStudentFromMachines(student: iStudent): Observable<boolean> {
+    // this is not RESTful, by the way
+    let httpHeaders = new HttpHeaders()
+      .set('Cache-Control', 'no-cache');
+    let options = {headers: httpHeaders};
+
+    return this.http.post<boolean>(`api/use-records/${student.studentPk}/logout`, "", options).pipe(
       map(
         () => {
           return true;
