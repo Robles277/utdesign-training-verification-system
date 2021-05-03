@@ -9,5 +9,5 @@ import com.project.DatabaseAPI.Entities.*;
 @EnableJpaRepositories
 @EntityScan(basePackages = "com.project.DatabaseAPI.Entities.Machine")
 public interface MachineRepository extends JpaRepository<Machine, Integer> {
-
+	
 }

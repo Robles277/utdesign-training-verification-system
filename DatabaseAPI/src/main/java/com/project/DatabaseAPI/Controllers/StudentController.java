@@ -59,7 +59,7 @@ public class StudentController {
   @PostMapping("/students")
   public int addStudent(@RequestBody Student student) {
 	  studentService.addStudent(student);
-	  return student.getStudentPk();
+    return student.getStudentPk();
   }
 
   @PutMapping("/students/{id}")
@@ -78,16 +78,16 @@ public class StudentController {
   public void deleteStudent(@PathVariable Integer id) {
       studentService.deleteStudent(id);
   }
-
-  @PostMapping("/students/upload")
+  
+  @PostMapping("/students/uploadStudentCSV")
   public ResponseEntity<?> uploadCSV(@RequestParam("file") MultipartFile file) {
-
+	  
 	  try {
-
 		  BufferedReader fileReader = new BufferedReader(new InputStreamReader(file.getInputStream(), "UTF-8"));
 		  CSVParser csvParser = new CSVParser(fileReader, CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());
+		  // parse the csv and add each student
 		  for (CSVRecord csvRecord : csvParser) {
-
+			  
 			  Student student = new Student(
 					  csvRecord.get("Student Id"),
 					  csvRecord.get("NetId"),
@@ -95,11 +95,15 @@ public class StudentController {
 					  csvRecord.get("Last Name"),
 					  Short.parseShort(csvRecord.get("Training Level")),
 					  csvRecord.get("Identifier"));
-
-			  studentService.addStudent(student);
+			  
+			  try {
+				studentService.addStudent(student);
+			  }
+	    		catch(Exception e ){
+			  		continue;
+			  }
 		  }
 		  csvParser.close();
-
 		  return new ResponseEntity<>(HttpStatus.OK);
 		  }
 	  catch (Exception e) {

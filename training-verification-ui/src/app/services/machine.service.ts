@@ -101,4 +101,9 @@ export class MachineService {
         }
       ));
   }
+
+  uploadMachineCSV(file: FormData): Observable<any> {
+    return this.http.post('api/machines/uploadMachineCSV', file);
+  }
+  
 }

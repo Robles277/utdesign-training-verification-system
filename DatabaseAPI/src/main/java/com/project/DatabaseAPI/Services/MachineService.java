@@ -18,9 +18,9 @@ public class MachineService {
 		return machineRepository.findAll();
 	}
 
-  public Machine getMachine(Integer id) {
-    return machineRepository.findById(id).get();
-  }
+	public Machine getMachine(Integer id) {
+		return machineRepository.findById(id).get();
+	}
 
 	public void addMachine(Machine machine) {
 		machineRepository.save(machine);

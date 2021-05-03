@@ -99,9 +99,9 @@ export class StudentService {
         }
       ));
   }
-
-  public uploadCSV(file: any): Observable<any> {
-    return this.http.put('api/students/upload', file);
+  
+  uploadStudentCSV(file: FormData): Observable<any> {
+    return this.http.post('api/students/uploadStudentCSV', file);
   }
 
   public loginStudentToMachines(student: iStudent, machineList: iMachine[]): Observable<boolean> {
@@ -139,5 +139,4 @@ export class StudentService {
         }
       ));
   }
-
 }

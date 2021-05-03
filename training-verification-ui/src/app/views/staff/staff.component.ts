@@ -5,6 +5,7 @@ import { iAppointment, iStudent, iUseRecord } from '../../interfaces';
 import { ShowStudentsComponent } from 'src/app/components/show-students/show-students.component';
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { UseRecordService } from 'src/app/services/use-record.service';
+import { MachineService } from 'src/app/services/machine.service';
 import { saveAs } from 'file-saver';
 import { NgForm } from '@angular/forms';
 
@@ -16,7 +17,7 @@ import { NotificationService } from 'src/app/services/notification.service'
   templateUrl: './staff.component.html',
   styleUrls: ['./staff.component.css']
 })
-export class StaffComponent implements OnInit {
+export class StaffComponent {
 
   showStudents: boolean = false;
   showMachines: boolean = false;
@@ -25,31 +26,38 @@ export class StaffComponent implements OnInit {
 
   constructor(
     private useRecordService: UseRecordService,
+    private studentService: StudentService,
+    private machineService: MachineService,
     private notifyService : NotificationService
   ) {  }
 
-  ngOnInit(): void {
-
+  showForm(id:string) {
+    var x = document.getElementById(id);
+    if (x!.style.display == "none") 
+      x!.style.display = "block";
+    else 
+      x!.style.display = "none";
   }
 
-  scheduleNew() {
-
-    alert("scheduleNew()");
-  }
-  manageSchedule() {
-    alert("manageSchedule()");
-  }
-  manageStudents() {
-    alert("manageStudents()");
-  }
-
-  uploadcsv(f: NgForm) {
-    // e.preventDefault()
-
+  uploadStudentcsv(f: NgForm) {
     console.log(f.value);
-
+    let file = (document.getElementById("file") as HTMLInputElement).files?.[0]
+    let formData = new FormData();
+    formData.append("file", file as Blob, "")
+    this.studentService.uploadStudentCSV(formData).subscribe(data => {
+      alert("File uploaded.")
+    })
   }
 
+  uploadMachinecsv(f: NgForm) {
+    console.log(f.value);
+    let file = (document.getElementById("file1") as HTMLInputElement).files?.[0]
+    let formData = new FormData();
+    formData.append("file", file as Blob, "")
+    this.machineService.uploadMachineCSV(formData).subscribe(data => {
+      alert("File uploaded.")
+    })
+  }
 
 
   downloadLog()
@@ -68,28 +76,16 @@ export class StaffComponent implements OnInit {
     this.showAppointments = false;
     this.showStudents = true;
   }
+
   showAllAppointments() {
     this.showStudents = false;
     this.showMachines = false;
     this.showAppointments = true;
   }
+
   showAllMachines() {
     this.showStudents = false;
     this.showAppointments = false;
     this.showMachines = true;
   }
-  postStudentTest() {
-
-  }
-
-  postAppointmentTest() {
-
-  }
-
-  postUseRecordTest() {
-
-  }
-
-
-
 }
