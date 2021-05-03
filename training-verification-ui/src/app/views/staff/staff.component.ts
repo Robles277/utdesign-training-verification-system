@@ -33,42 +33,40 @@ export class StaffComponent {
 
   showForm(id:string) {
     var x = document.getElementById(id);
-    if (x!.style.display == "none") 
+    if (x!.style.display == "none")
       x!.style.display = "block";
-    else 
+    else
       x!.style.display = "none";
   }
 
   uploadStudentcsv(f: NgForm) {
     console.log(f.value);
-    let file = (document.getElementById("file") as HTMLInputElement).files?.[0]
+    let file = (document.getElementById("file") as HTMLInputElement).files?.[0];
     let formData = new FormData();
-    formData.append("file", file as Blob, "")
+    formData.append("file", file as Blob, "");
     this.studentService.uploadStudentCSV(formData).subscribe(data => {
-      alert("File uploaded.")
+      alert("File uploaded.");
     })
   }
 
   uploadMachinecsv(f: NgForm) {
     console.log(f.value);
-    let file = (document.getElementById("file1") as HTMLInputElement).files?.[0]
+    let file = (document.getElementById("file1") as HTMLInputElement).files?.[0];
     let formData = new FormData();
-    formData.append("file", file as Blob, "")
+    formData.append("file", file as Blob, "");
     this.machineService.uploadMachineCSV(formData).subscribe(data => {
-      alert("File uploaded.")
+      alert("File uploaded.");
     })
   }
 
 
-  downloadLog()
-  {
+  downloadLog() {
     this.useRecordService.getTextFile('api/use-records/downloadCSV')
       .subscribe(data => {
         let newblob = new Blob([data], { type: 'text/csv;charset=utf-8;' });
         saveAs(newblob, 'log.csv');
       });
-      this.notifyService.showSuccess("Downloading Data")
-
+      this.notifyService.showSuccess("Downloading data...");
   }
 
   showAllStudents() {
