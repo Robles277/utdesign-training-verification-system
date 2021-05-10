@@ -55,7 +55,6 @@ export class LoginModalComponent {
       this.notifyService.showError("Please select one or more machines.", "");
       return;
     }
-    this.notifyService.showSuccess("You have been logged in!");
     this.activeModal.close({objectList: selectedMachines});
   }
 }

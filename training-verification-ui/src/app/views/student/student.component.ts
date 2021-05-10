@@ -83,9 +83,10 @@ export class StudentComponent {
         this.studentService.loginStudentToMachines(student, result.objectList)
           .subscribe(
             (result: boolean) => {
-
+              this.notifyService.showSuccess("You have been logged in!");
             },
             error => {
+              this.notifyService.showError("Unable to login! Make sure you logout first.", "Error");
               console.error("Error signing student in", error);
             }
           );

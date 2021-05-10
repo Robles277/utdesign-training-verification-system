@@ -37,6 +37,7 @@ import com.project.DatabaseAPI.Services.MachineService;
 import com.project.DatabaseAPI.Services.StudentService;
 import com.project.DatabaseAPI.Services.UseRecordService;
 import com.project.DatabaseAPI.Entities.*;
+import com.project.DatabaseAPI.Exceptions.StudentAlreadySignedInException;
 
 
 
@@ -165,6 +166,9 @@ public class UseRecordController {
 	  }
 	  catch (NoSuchElementException e) {
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);  
+	  }
+	  catch (StudentAlreadySignedInException e) {
+		  return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	  }
   	}
   
