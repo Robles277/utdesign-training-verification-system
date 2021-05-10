@@ -40,6 +40,9 @@ export class StudentComponent {
         if(this.currentStudent === undefined || this.currentStudent === null) {
           this.showUnknown();
         }
+        else if(this.currentStudent.trainingLevel != 2) {
+          this.notifyService.showError("You do not have the proper training level.", "Training Level Error");
+        }
         else {
           this.openLoginModal(this.currentStudent);
         }
