@@ -44,9 +44,11 @@ export class StaffComponent {
     let file = (document.getElementById("file") as HTMLInputElement).files?.[0];
     let formData = new FormData();
     formData.append("file", file as Blob, "");
-    this.studentService.uploadStudentCSV(formData).subscribe(data => {
-      alert("File uploaded.");
-    })
+    this.studentService.uploadStudentCSV(formData).
+    subscribe(
+      data => alert("File uploaded successfully."),
+      error => alert("Some of the information was unable to be parsed.")
+    );
   }
 
   uploadMachinecsv(f: NgForm) {
@@ -54,9 +56,11 @@ export class StaffComponent {
     let file = (document.getElementById("file1") as HTMLInputElement).files?.[0];
     let formData = new FormData();
     formData.append("file", file as Blob, "");
-    this.machineService.uploadMachineCSV(formData).subscribe(data => {
-      alert("File uploaded.");
-    })
+    this.machineService.uploadMachineCSV(formData).
+    subscribe(
+      data => alert("File uploaded successfully."),
+      error => alert("Some of the information was unable to be parsed.")
+    );
   }
 
 

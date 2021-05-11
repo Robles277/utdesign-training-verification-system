@@ -81,6 +81,7 @@ public class StudentController {
   
   @PostMapping("/students/uploadStudentCSV")
   public ResponseEntity<?> uploadCSV(@RequestParam("file") MultipartFile file) {
+	  boolean conflict = false;
 	  
 	  try {
 		  BufferedReader fileReader = new BufferedReader(new InputStreamReader(file.getInputStream(), "UTF-8"));
@@ -97,15 +98,22 @@ public class StudentController {
 					  csvRecord.get("Identifier"));
 			  
 			  try {
-				studentService.addStudent(student);
+				  studentService.addStudent(student);
 			  }
-	    		catch(Exception e ){
-			  		continue;
+	    	  catch(Exception e ){
+	    		  conflict = true;
+			  	  continue;
 			  }
 		  }
 		  csvParser.close();
-		  return new ResponseEntity<>(HttpStatus.OK);
+		  
+		  if (conflict == true) {
+			  return new ResponseEntity<>(HttpStatus.CONFLICT);
 		  }
+		  else {
+			  return new ResponseEntity<>(HttpStatus.OK);
+		  }
+	  }
 	  catch (Exception e) {
 		  throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to upload file", e);
 	  }
